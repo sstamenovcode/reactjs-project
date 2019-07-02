@@ -1,0 +1,13 @@
+@import './../variables.scss';
+
+.footer {
+    height: 50px;
+    line-height: 50px;
+    background: $site-color;
+    color: #fff;
+
+    p {
+        padding: 0 70px;
+        font-size: 0.9rem;
+    }
+}

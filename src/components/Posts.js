@@ -1,24 +1,38 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchPosts } from '../actions/postActions'
+import './Posts.scss'
 
 class Posts extends Component {
     componentDidMount() {
         this.props.fetchPosts()
     }
 
+    truncate(text) {
+        if (text.length > 150) {
+            return text.slice(0, 150).concat('...')
+        }
+
+        return text
+    }
+
     render() {
         const postItems = this.props.posts.map(post => {
-            return <div key={post.id}>
-                        <h3>{post.title}</h3>
-                        <p>{post.body}</p>
+            return <div key={post.id} className="post">
+                        <h3 className="post-title">{post.title}</h3>
+                        <hr />
+                        <p className="post-text">{this.truncate(post.text)}</p>
+                        <div className="read-more-container">
+                            <Link to={`/posts/${post.id}`}>Read more</Link>
+                        </div>
                     </div>
         })
 
         return (
             <div>
-                <h1>Posts</h1>
+                <h1 className="heading">Posts</h1>
                 {postItems}
             </div>
         )
