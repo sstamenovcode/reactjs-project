@@ -11,7 +11,7 @@ class Home extends Component {
                         <p>Meet the people that are meant for you!</p>
                     </div>
                 </div>
-                <h1 className="latest-blog-posts">Latest blog posts</h1>
+                <h2 className="latest-blog-posts">Latest blog posts</h2>
             </div>
         )
     }
