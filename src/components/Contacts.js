@@ -4,23 +4,17 @@ import 'firebase/auth'
 import './Contacts.scss'
 
 class Contacts extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            email: '',
-            password: '',
-            message: ''
-        }
-        
-        this.handleSubmit = this.handleSubmit.bind(this)
-        this.handleChange = this.handleChange.bind(this)
+    state = {
+        email: '',
+        password: '',
+        message: ''
     }
 
-    handleChange(e) {
+    handleChange = (e) => {
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    handleSubmit(e) {
+    handleSubmit = (e) => {
         e.preventDefault()
         firebase
             .auth()
@@ -39,7 +33,7 @@ class Contacts extends Component {
                 <h1 className="heading">Contacts</h1>
                 <form onSubmit={this.handleSubmit}>
                     <div>
-                        <label for="email">Email:</label>  
+                        <label htmlFor="email">Email:</label>  
                         <input 
                             type="email" 
                             value={this.state.username} 
@@ -49,7 +43,7 @@ class Contacts extends Component {
                             placeholder="Your email..." />
                     </div>
                     <div>
-                        <label for="password">Password:</label>
+                        <label htmlFor="password">Password:</label>
                         <input 
                             type="password" 
                             value={this.state.password} 
@@ -59,7 +53,7 @@ class Contacts extends Component {
                             placeholder="Your password..." />
                     </div>
                     <div>
-                    <label for="message">Message:</label>
+                    <label htmlFor="message">Message:</label>
                         <textarea 
                             value={this.state.message} 
                             name="message" 

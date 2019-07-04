@@ -22,6 +22,12 @@ class Nav extends Component {
                     <Link to="/contacts">
                         <li>Contacts</li>
                     </Link>
+                    <Link to="#">
+                        <li>Log in</li>
+                    </Link>
+                    <Link to="#">
+                        <li>Sign up</li>
+                    </Link>
                 </ul>
             </div>
         )
