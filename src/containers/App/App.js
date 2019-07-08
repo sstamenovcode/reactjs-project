@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import Nav from './../../components/Nav/Nav'
+import Toolbar from './../../components/Toolbar/Toolbar'
 import Footer from './../../components/Footer/Footer'
 import Home from '../../components/Home/Home'
 import Posts from './../../components/Posts/Posts'
@@ -14,7 +14,7 @@ function App() {
     <Router>
       <div className="App">
         <div className="content">
-          <Nav />
+          <Toolbar />
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/posts" component={Posts} />

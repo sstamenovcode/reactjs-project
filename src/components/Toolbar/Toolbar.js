@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import './Nav.scss'
+import './Toolbar.scss'
 
-class Nav extends Component {
+class Toolbar extends Component {
     render() {
         return (
             <div className="header">
@@ -34,4 +34,4 @@ class Nav extends Component {
     }
 }
 
-export default Nav
+export default Toolbar
