@@ -1,33 +1,35 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import './Toolbar.scss'
 
 const toolbar = (props) => {
     return (
         <header className="header">
-            <Link to="/">
+            <NavLink to="/">
                 <span className="logo">The Natural Dating</span>
-            </Link>
-            <ul>
-                <Link to="/posts">
-                    <li>Blog</li>
-                </Link>
-                <Link to="#">
-                    <li>Your stories</li>
-                </Link>
-                <Link to="/about-us">
-                    <li>About us</li>
-                </Link>
-                <Link to="/contacts">
-                    <li>Contacts</li>
-                </Link>
-                <Link to="#">
-                    <li>Log in</li>
-                </Link>
-                <Link to="#">
-                    <li>Sign up</li>
-                </Link>
-            </ul>
+            </NavLink>
+            <nav>
+                <ul>
+                    <NavLink to="/posts">
+                        <li>Blog</li>
+                    </NavLink>
+                    <NavLink to="#">
+                        <li>Your stories</li>
+                    </NavLink>
+                    <NavLink to="/about-us">
+                        <li>About us</li>
+                    </NavLink>
+                    <NavLink to="/contacts">
+                        <li>Contacts</li>
+                    </NavLink>
+                    <NavLink to="#">
+                        <li>Log in</li>
+                    </NavLink>
+                    <NavLink to="#">
+                        <li>Sign up</li>
+                    </NavLink>
+                </ul>
+            </nav>
         </header>
     )
 }
