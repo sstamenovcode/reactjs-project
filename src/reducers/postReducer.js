@@ -1,18 +1,18 @@
 import { FETCH_POSTS } from '../actions/types'
+import updateObject from './utility'
 
 const initialState = {
     items: [],
     item: {}
 }
 
-export default function(state = initialState, action) {
+const reducer = (state = initialState, action) => {
     switch(action.type) {
         case FETCH_POSTS: 
-            return {
-                ...state,
-                items: action.payload
-            }
+            return updateObject(state, { items: action.payload })
         default:
             return state
     }
 }
+
+export default reducer

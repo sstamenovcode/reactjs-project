@@ -17,7 +17,7 @@ function App() {
           <Toolbar />
           <Switch>
             <Route path="/" exact component={Home} />
-            <Route path="/posts" component={Posts} />
+            <Route path="/posts" exact component={Posts} />
             <Route path="/about-us" component={AboutUs} />
             <Route path="/contacts" component={Contacts} />
             <Route path="*" component={NotFound} />

@@ -1,8 +1,8 @@
 import { FETCH_POSTS } from './types'
 import db from './../firestoreInit';
 
-export function fetchPosts() {
-  return function(dispatch) {
+export const fetchPosts = () => {
+  return (dispatch) => {
     db.collection('articles')
       .get()
       .then(querySnapshot => {
