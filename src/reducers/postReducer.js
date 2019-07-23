@@ -1,10 +1,10 @@
-import { FETCH_POSTS } from '../actions/types'
-import updateObject from './utility'
+import { FETCH_POSTS } from '../actions/types';
+import updateObject from '../utility';
 
 const initialState = {
     items: [],
     item: {}
-}
+};
 
 const reducer = (state = initialState, action) => {
     switch(action.type) {
@@ -13,6 +13,6 @@ const reducer = (state = initialState, action) => {
         default:
             return state
     }
-}
+};
 
-export default reducer
+export default reducer;

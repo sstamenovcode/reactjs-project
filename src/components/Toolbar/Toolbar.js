@@ -22,11 +22,11 @@ const toolbar = (props) => {
                     <NavLink to="/contacts">
                         <li>Contacts</li>
                     </NavLink>
-                    <NavLink to="#">
-                        <li>Log in</li>
+                    <NavLink to="/register">
+                        <li>Register</li>
                     </NavLink>
-                    <NavLink to="#">
-                        <li>Sign up</li>
+                    <NavLink to="/log-in">
+                        <li>Log in</li>
                     </NavLink>
                 </ul>
             </nav>
