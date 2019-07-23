@@ -1,21 +1,21 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
-import { fetchPosts } from './../../actions/postActions'
-import './Posts.scss'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { fetchPosts } from '../../actions/postActions';
+import './Posts.scss';
 
 class Posts extends Component {
     componentDidMount() {
-        this.props.fetchPosts()
+        this.props.fetchPosts();
     }
 
     truncate(text) {
         if (text.length > 150) {
-            return text.slice(0, 150).concat('...')
+            return text.slice(0, 150).concat('...');
         }
 
-        return text
+        return text;
     }
 
     render() {
@@ -28,14 +28,14 @@ class Posts extends Component {
                             <Link to={`/posts/${post.id}`}>Read more</Link>
                         </div>
                     </div>
-        })
+        });
 
         return (
             <div>
                 <h1 className="heading">Posts</h1>
                 {postItems}
             </div>
-        )
+        );
     }
 }
 
@@ -53,6 +53,6 @@ const mapDispatchToProps = dispatch => {
         fetchPosts: () => dispatch(fetchPosts()),
         dispatch
     }
-  }
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Posts)
+export default connect(mapStateToProps, mapDispatchToProps)(Posts);

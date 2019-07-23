@@ -1,5 +1,5 @@
-import React from 'react'
-import './Footer.scss'
+import React from 'react';
+import './Footer.scss';
 
 const footer = (props) => {
     return (
@@ -7,6 +7,6 @@ const footer = (props) => {
             <p>Copyright© 2019</p>
         </footer>
     )
-}
+};
 
-export default footer
+export default footer;

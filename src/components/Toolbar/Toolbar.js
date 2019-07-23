@@ -1,6 +1,6 @@
-import React from 'react'
-import { NavLink } from 'react-router-dom'
-import './Toolbar.scss'
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import './Toolbar.scss';
 
 const toolbar = (props) => {
     return (
@@ -34,4 +34,4 @@ const toolbar = (props) => {
     )
 }
 
-export default toolbar
+export default toolbar;
