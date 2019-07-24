@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { registerUser } from '../../actions/authActions';
+import { loginUser } from '../../actions/authActions';
 
 class Register extends Component {
   state = {
@@ -16,7 +16,7 @@ class Register extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.registerUserAction(this.state.email, this.state.password);
+    this.props.loginUserAction(this.state.email, this.state.password);
     this.props.history.push({pathname: '/'});
   }
 
@@ -48,7 +48,7 @@ class Register extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    registerUserAction: (email, password) => dispatch(registerUser(email, password))
+    loginUserAction: (email, password) => dispatch(loginUser(email, password))
   }
 }
 

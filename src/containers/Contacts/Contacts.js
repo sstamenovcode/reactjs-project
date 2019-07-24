@@ -63,4 +63,4 @@ class Contacts extends Component {
     }
 }
 
-export default Contacts
+export default Contacts;
