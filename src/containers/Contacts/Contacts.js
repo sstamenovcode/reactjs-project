@@ -32,36 +32,30 @@ class Contacts extends Component {
             <div className="contacts-container">
                 <h1 className="heading">Contacts</h1>
                 <form onSubmit={this.handleSubmit}>
-                    <div>
-                        <label htmlFor="email">Email:</label>  
-                        <input 
-                            type="email" 
-                            value={this.state.username} 
-                            name="email" 
-                            onChange={this.handleChange} 
-                            id="email" 
-                            placeholder="Your email..." />
-                    </div>
-                    <div>
-                        <label htmlFor="password">Password:</label>
-                        <input 
-                            type="password" 
-                            value={this.state.password} 
-                            name="password" 
-                            onChange={this.handleChange}
-                            id="password" 
-                            placeholder="Your password..." />
-                    </div>
-                    <div>
+                    <label htmlFor="email">Email:</label>
+                    <input 
+                        type="email" 
+                        value={this.state.username} 
+                        name="email" 
+                        onChange={this.handleChange} 
+                        id="email" 
+                        placeholder="Your email..." />
+                    <label htmlFor="password">Password:</label>
+                    <input 
+                        type="password" 
+                        value={this.state.password} 
+                        name="password" 
+                        onChange={this.handleChange}
+                        id="password" 
+                        placeholder="Your password..." />
                     <label htmlFor="message">Message:</label>
-                        <textarea 
-                            value={this.state.message} 
-                            name="message" 
-                            onChange={this.handleChange}
-                            id="message" 
-                            placeholder="Your message...">
-                        </textarea>
-                    </div>
+                    <textarea 
+                        value={this.state.message} 
+                        name="message" 
+                        onChange={this.handleChange}
+                        id="message" 
+                        placeholder="Your message...">
+                    </textarea>
                     <input type="submit" value="Submit" />
                 </form>
             </div>

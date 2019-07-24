@@ -13,9 +13,6 @@ const toolbar = (props) => {
                     <NavLink to="/posts">
                         <li>Blog</li>
                     </NavLink>
-                    <NavLink to="#">
-                        <li>Your stories</li>
-                    </NavLink>
                     <NavLink to="/about-us">
                         <li>About us</li>
                     </NavLink>
@@ -25,8 +22,8 @@ const toolbar = (props) => {
                     <NavLink to="/register">
                         <li>Register</li>
                     </NavLink>
-                    <NavLink to="/log-in">
-                        <li>Log in</li>
+                    <NavLink to="/login">
+                        <li>Login</li>
                     </NavLink>
                     <NavLink to="/logout">
                         <li>Logout</li>

@@ -1,3 +1,11 @@
+const isUserAuth = () => {
+  if (localStorage.getItem('token')) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 const updateObject = (mainObject, newDataObject) => {
   return {
     ...mainObject,
@@ -12,7 +20,8 @@ const parseFirestoreData = (data) => {
   return parsedData;
 };
 
-export { 
+export {
+  isUserAuth,
   updateObject,
   parseFirestoreData
 };

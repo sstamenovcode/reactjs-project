@@ -24,13 +24,15 @@ class Register extends Component {
     return (
       <div className="contacts-container">
         <h1 className="heading">Register</h1>
-        <form className="register-container" onSubmit={this.handleSubmit} >
+        <form className="register-container" onSubmit={this.handleSubmit}>
+          <label htmlFor="email">Email:</label>
           <input 
             type="email" 
             name="email" 
             value={this.state.email} 
             onChange={this.handleChange} 
             placeholder="Your email..." />
+          <label htmlFor="password">Password:</label>
           <input 
             type="password" 
             name="password" 

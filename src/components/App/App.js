@@ -7,7 +7,7 @@ import Posts from '../../containers/Posts/Posts';
 import AboutUs from '../AboutUs/AboutUs';
 import Contacts from '../../containers/Contacts/Contacts';
 import Register from '../../containers/Register/Register';
-import LogIn from '../../containers/LogIn/LogIn';
+import Login from '../../containers/Login/Login';
 import Logout from '../../containers/Logout/Logout';
 import NotFound from '../NotFound/NotFound';
 import './App.scss';
@@ -24,7 +24,7 @@ const app = () => {
             <Route path="/about-us" component={AboutUs} />
             <Route path="/contacts" component={Contacts} />
             <Route path="/register" component={Register} />
-            <Route path="/log-in" component={LogIn} />
+            <Route path="/login" component={Login} />
             <Route path="/logout" component={Logout} />
             <Route path="*" component={NotFound} />
           </Switch>
