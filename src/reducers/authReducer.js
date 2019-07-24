@@ -1,5 +1,5 @@
 import { REGISTER_USER } from '../actions/types';
-import updateObject from '../utility';
+import { updateObject } from '../utility';
 
 const initialState = {
     idToken: null,

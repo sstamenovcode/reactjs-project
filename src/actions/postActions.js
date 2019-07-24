@@ -1,21 +1,22 @@
-import { FETCH_POSTS } from './types'
-import db from './../firestoreInit';
+import FireStoreParser from 'firestore-parser';
+import { FETCH_POSTS } from './types';
+import firestoreConfig from '../firestoreConfig';
+import { parseFirestoreData } from '../utility';
 
 export const fetchPosts = () => {
   return (dispatch) => {
-    db.collection('articles')
-      .get()
-      .then(querySnapshot => {
-        const docs = [];
-        querySnapshot.forEach(doc => {
-            const data = doc.data();
-            const id = doc.id;
-            docs.push({ id, ...data });
+    const doc = 'articles';
+    const url = `https://firestore.googleapis.com/v1beta1/projects/${firestoreConfig.projectId}/databases/(default)/documents/${doc}?key=${firestoreConfig.apiKey}`;
+
+    fetch(url)
+        .then(response => response.json())
+        .then(json => FireStoreParser(json))
+        .then(json => {
+          const docs = parseFirestoreData(json.documents);
+          dispatch({ 
+            type: FETCH_POSTS,
+            payload: docs
+          })
         })
-        dispatch({ 
-          type: FETCH_POSTS,
-          payload: docs
-        })
-      })
   }
 }

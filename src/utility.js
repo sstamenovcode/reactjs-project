@@ -2,7 +2,17 @@ const updateObject = (mainObject, newDataObject) => {
   return {
     ...mainObject,
     ...newDataObject
-  };
+  }
 };
 
-export default updateObject;
+const parseFirestoreData = (data) => {
+  const parsedData = data.map(el => {
+    return { ...el.fields };
+  })
+  return parsedData;
+};
+
+export { 
+  updateObject,
+  parseFirestoreData
+};

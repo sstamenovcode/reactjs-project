@@ -1,17 +1,16 @@
 import { FETCH_POSTS } from '../actions/types';
-import updateObject from '../utility';
+import { updateObject } from '../utility';
 
 const initialState = {
-    items: [],
-    item: {}
+    posts: []
 };
 
 const reducer = (state = initialState, action) => {
     switch(action.type) {
         case FETCH_POSTS: 
-            return updateObject(state, { items: action.payload })
+            return updateObject(state, { posts: action.payload });
         default:
-            return state
+            return state;
     }
 };
 

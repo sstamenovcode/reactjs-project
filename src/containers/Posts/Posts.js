@@ -19,8 +19,8 @@ class Posts extends Component {
     }
 
     render() {
-        const postItems = this.props.posts.map(post => {
-            return <div key={post.id} className="post">
+        const postItems = this.props.posts.map((post, i) => {
+            return <div key={i} className="post">
                         <h3 className="post-title">{post.title}</h3>
                         <hr />
                         <p className="post-text">{this.truncate(post.text)}</p>
@@ -45,7 +45,7 @@ Posts.propTypes = {
 }
 
 const mapStateToProps = state => ({
-    posts: state.posts.items
+    posts: state.posts.posts
 })
 
 const mapDispatchToProps = dispatch => {
