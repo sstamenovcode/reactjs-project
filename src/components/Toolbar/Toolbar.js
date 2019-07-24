@@ -19,15 +19,15 @@ const toolbar = (props) => {
                     <NavLink to="/contacts">
                         <li>Contacts</li>
                     </NavLink>
-                    <NavLink to="/register">
+                    {!props.isAuth ? <NavLink to="/register">
                         <li>Register</li>
-                    </NavLink>
-                    <NavLink to="/login">
+                    </NavLink> : null}
+                    {!props.isAuth ? <NavLink to="/login">
                         <li>Login</li>
-                    </NavLink>
-                    <NavLink to="/logout">
+                    </NavLink> : null}
+                    {props.isAuth ? <NavLink to="/logout">
                         <li>Logout</li>
-                    </NavLink>
+                    </NavLink> : null}
                 </ul>
             </nav>
         </header>

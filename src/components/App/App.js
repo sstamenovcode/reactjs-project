@@ -21,21 +21,39 @@ class App extends Component {
   }
 
   render() {
+    let routes = null;
+
+    if (isUserAuth()) {
+      routes = (
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/posts" exact component={Posts} />
+          <Route path="/about-us" component={AboutUs} />
+          <Route path="/contacts" component={Contacts} />
+          <Route path="/logout" component={Logout} />
+          <Route path="*" component={NotFound} />
+        </Switch>
+      )
+    } else {
+      routes = (
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/posts" exact component={Posts} />
+          <Route path="/about-us" component={AboutUs} />
+          <Route path="/contacts" component={Contacts} />
+          <Route path="/register" component={Register} />
+          <Route path="/login" component={Login} />
+          <Route path="*" component={NotFound} />
+        </Switch>
+      )
+    }
+
     return (
       <Router>
         <div className="App">
           <div className="content">
-            <Toolbar />
-            <Switch>
-              <Route path="/" exact component={Home} />
-              <Route path="/posts" exact component={Posts} />
-              <Route path="/about-us" component={AboutUs} />
-              <Route path="/contacts" component={Contacts} />
-              <Route path="/register" component={Register} />
-              <Route path="/login" component={Login} />
-              <Route path="/logout" component={Logout} />
-              <Route path="*" component={NotFound} />
-            </Switch>
+            <Toolbar isAuth={this.props.isAuthenticated} />
+            {routes}
           </div>
           <Footer />
         </div>
@@ -44,10 +62,14 @@ class App extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.email !== null
+})
+
 const mapDispatchToProps = dispatch => {
   return {
     getUserDataAction: () => dispatch(getUserData())
   }
 }
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
