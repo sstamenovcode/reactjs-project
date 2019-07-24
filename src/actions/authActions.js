@@ -1,4 +1,5 @@
 import { REGISTER_USER } from './types';
+import { LOGOUT_USER } from './types';
 
 const registerUser = (email, password) => {
   return (dispatch) => {
@@ -17,10 +18,13 @@ const registerUser = (email, password) => {
         body: JSON.stringify(authData)
     })
       .then(res => res.json())
-      .then(data => {
+      .then(userData => {
+        const expirationDate = new Date(new Date().getTime() + userData.expiresIn * 1000);
+        localStorage.setItem('token', userData.idToken);
+        localStorage.setItem('expiresIn', expirationDate);
         dispatch({
           type: REGISTER_USER,
-          payload: data
+          payload: userData
         });
       })
       .catch(error => {
@@ -29,6 +33,17 @@ const registerUser = (email, password) => {
   }
 };
 
+const logoutUser = () => {
+  return (dispatch) => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('expiresIn');
+    dispatch({
+      type: LOGOUT_USER
+    });
+  }
+}
+
 export {
-  registerUser
+  registerUser,
+  logoutUser
 };

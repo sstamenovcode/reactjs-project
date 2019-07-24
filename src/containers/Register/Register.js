@@ -13,19 +13,33 @@ class Register extends Component {
       [e.target.name]: e.target.value
     });
   }
-  
+
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.registerUserAction(this.state.email, this.state.password);
+    this.props.history.push({pathname: '/'});
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <input type="email" name="email" value={this.state.email} onChange={this.handleChange} />
-        <input type="password" name="password" value={this.state.password} onChange={this.handleChange} />
-        <input type="submit" value="Submit" />
-      </form>
+      <div className="contacts-container">
+        <h1 className="heading">Register</h1>
+        <form className="register-container" onSubmit={this.handleSubmit} >
+          <input 
+            type="email" 
+            name="email" 
+            value={this.state.email} 
+            onChange={this.handleChange} 
+            placeholder="Your email..." />
+          <input 
+            type="password" 
+            name="password" 
+            value={this.state.password} 
+            onChange={this.handleChange} 
+            placeholder="Your password..." />
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
     )
   }
 }

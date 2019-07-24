@@ -28,6 +28,9 @@ const toolbar = (props) => {
                     <NavLink to="/log-in">
                         <li>Log in</li>
                     </NavLink>
+                    <NavLink to="/logout">
+                        <li>Logout</li>
+                    </NavLink>
                 </ul>
             </nav>
         </header>
