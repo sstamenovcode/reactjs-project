@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { isUserAuth } from '../../utility';
 import { logoutUser } from '../../actions/authActions';
  
 class Logout extends Component {
   componentDidMount() {
-    this.props.onLogout();
+    return isUserAuth() ? this.props.onLogout() : null;
   }
 
   render() {

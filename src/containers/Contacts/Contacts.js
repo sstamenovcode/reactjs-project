@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import firebase from 'firebase/app'
-import 'firebase/auth'
-import './Contacts.scss'
+import React, { Component } from 'react';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import './Contacts.scss';
 
 class Contacts extends Component {
     state = {

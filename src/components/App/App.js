@@ -17,9 +17,7 @@ import './App.scss';
 
 class App extends Component {
   componentDidMount() {
-    if (isUserAuth()) {
-      this.props.getUserDataAction();
-    }
+    return isUserAuth() ? this.props.getUserDataAction() : null;
   }
 
   render() {
