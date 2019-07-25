@@ -64,6 +64,10 @@ class Contacts extends Component {
     }
 
     render() {
+        const emailInputErrorMessage = <p className="error-message">The email is not valid.</p>;
+        const passwordInputErrorMessage = <p className="error-message">The password should be at least 8 characters long.</p>;
+        const messageInputErrorMessage = <p className="error-message">The message should be at least 20 characters long.</p>;
+
         return (
             <div className="contacts-container">
                 <h1 className="heading">Contacts</h1>
@@ -81,6 +85,7 @@ class Contacts extends Component {
                         placeholder="Your email..."
                         required 
                     />
+                    {this.state.inputEmailStyle ? emailInputErrorMessage : null}
                     <Input 
                         proptype="input"
                         type="password" 
@@ -94,6 +99,7 @@ class Contacts extends Component {
                         placeholder="Your password..."
                         required
                     />
+                    {this.state.inputPasswordStyle ? passwordInputErrorMessage : null}
                     <Input 
                         proptype="textarea"
                         labelfor="message"
@@ -106,6 +112,7 @@ class Contacts extends Component {
                         placeholder="Your message..."
                         required
                     />
+                    {this.state.inputMessageStyle ? messageInputErrorMessage : null}
                     <Input
                         proptype="submit" 
                         type="submit" 
