@@ -17,6 +17,10 @@
         background: darkgreen;
       }
     }
+
+    &.invalid {
+      background-color: #f94d4d;
+    }
   }
 }
 

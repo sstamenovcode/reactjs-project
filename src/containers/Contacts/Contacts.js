@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Input from '../../components/UI/Input/Input';
+import { validateEmail } from '../../utility';
 
 import './Contacts.scss';
 
@@ -7,31 +8,59 @@ class Contacts extends Component {
     state = {
         email: '',
         password: '',
-        message: ''
+        message: '',
+        inputEmailStyle: null,
+        inputPasswordStyle: null,
+        inputMessageStyle: null
     }
 
     handleChange = (e) => {
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    handleSubmit = (e) => {
+    handleSubmit = async (e) => {
         e.preventDefault();
+        await this.setErrorClasses();
         const isValid = this.checkValidity();
+        return isValid ? this.clearUserDataState() : null;
+    }
+
+    clearUserDataState = () => {
+        this.setState({
+            email: '',
+            password: '',
+            message: ''
+        });
+    }
+
+    setErrorClasses = () => {
+        if (!validateEmail(this.state.email)) {
+            this.setState(state => ({ inputEmailStyle: 'invalid' }))
+        } else {
+            this.setState(state => ({ inputEmailStyle: null }));
+        }
+
+        if (this.state.password.length < 8) {
+            this.setState(state => ({ inputPasswordStyle: 'invalid' }));
+        } else {
+            this.setState(state => ({ inputPasswordStyle: null }));
+        }
+
+        if (this.state.message.length < 20) {
+            this.setState(state => ({ inputMessageStyle: 'invalid' }));
+        } else {
+            this.setState(state => ({ inputMessageStyle: null })); 
+        }
     }
 
     checkValidity = () => {
-        if (this.validateEmail(this.state.email) &&
-            this.state.password.length >= 8 && 
-            this.state.message.length >= 20) {
+        if (this.state.inputEmailStyle || 
+            this.state.inputPasswordStyle || 
+            this.state.inputMessageStyle) {
+            return false;
+        } else {
             return true;
         }
-
-        return false;
-    }
-
-    validateEmail = (email) => {
-        let re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-        return re.test(String(email).toLowerCase());
     }
 
     render() {
@@ -44,8 +73,9 @@ class Contacts extends Component {
                         type="email"
                         labelfor="email"
                         label="Email:"
-                        value={this.state.username} 
-                        name="email" 
+                        className={this.state.inputEmailStyle}
+                        value={this.state.email} 
+                        name="email"
                         onChange={this.handleChange} 
                         id="email" 
                         placeholder="Your email..."
@@ -56,8 +86,9 @@ class Contacts extends Component {
                         type="password" 
                         labelfor="password"
                         label="Password:"
+                        className={this.state.inputPasswordStyle}
                         value={this.state.password} 
-                        name="password" 
+                        name="password"
                         onChange={this.handleChange}
                         id="password" 
                         placeholder="Your password..."
@@ -67,8 +98,9 @@ class Contacts extends Component {
                         proptype="textarea"
                         labelfor="message"
                         label="Message:"
+                        className={this.state.inputMessageStyle}
                         value={this.state.message} 
-                        name="message" 
+                        name="message"
                         onChange={this.handleChange}
                         id="message" 
                         placeholder="Your message..."
