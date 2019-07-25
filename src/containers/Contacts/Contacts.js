@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import firebase from 'firebase/app';
-import 'firebase/auth';
 import Input from '../../components/UI/Input/Input';
 
 import './Contacts.scss';
@@ -17,16 +15,23 @@ class Contacts extends Component {
     }
 
     handleSubmit = (e) => {
-        e.preventDefault()
-        firebase
-            .auth()
-            .signInWithEmailAndPassword(this.state.email, this.state.password)
-            .then(data => {
-                this.props.history.push('/')
-            })
-            .catch(function (error) {
-                console.log(error.message)
-            });
+        e.preventDefault();
+        const isValid = this.checkValidity();
+    }
+
+    checkValidity = () => {
+        if (this.validateEmail(this.state.email) &&
+            this.state.password.length >= 8 && 
+            this.state.message.length >= 20) {
+            return true;
+        }
+
+        return false;
+    }
+
+    validateEmail = (email) => {
+        let re = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+        return re.test(String(email).toLowerCase());
     }
 
     render() {
@@ -43,7 +48,8 @@ class Contacts extends Component {
                         name="email" 
                         onChange={this.handleChange} 
                         id="email" 
-                        placeholder="Your email..." 
+                        placeholder="Your email..."
+                        required 
                     />
                     <Input 
                         proptype="input"
@@ -54,7 +60,8 @@ class Contacts extends Component {
                         name="password" 
                         onChange={this.handleChange}
                         id="password" 
-                        placeholder="Your password..." 
+                        placeholder="Your password..."
+                        required
                     />
                     <Input 
                         proptype="textarea"
@@ -65,6 +72,7 @@ class Contacts extends Component {
                         onChange={this.handleChange}
                         id="message" 
                         placeholder="Your message..."
+                        required
                     />
                     <Input
                         proptype="submit" 

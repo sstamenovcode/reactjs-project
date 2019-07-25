@@ -36,7 +36,8 @@ class Register extends Component {
             value={this.state.email} 
             onChange={this.handleChange} 
             id="email" 
-            placeholder="Your email..." 
+            placeholder="Your email..."
+            required
           />
           <Input 
             proptype="input"
@@ -48,6 +49,7 @@ class Register extends Component {
             onChange={this.handleChange}
             id="password"
             placeholder="Your password..."
+            required
           />
           <Input
             proptype="input"
