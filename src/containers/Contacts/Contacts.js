@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import Input from '../../components/UI/Input/Input';
+
 import './Contacts.scss';
 
 class Contacts extends Component {
@@ -32,31 +34,43 @@ class Contacts extends Component {
             <div className="contacts-container">
                 <h1 className="heading">Contacts</h1>
                 <form onSubmit={this.handleSubmit}>
-                    <label htmlFor="email">Email:</label>
-                    <input 
-                        type="email" 
+                    <Input
+                        proptype="input"
+                        type="email"
+                        labelfor="email"
+                        label="Email:"
                         value={this.state.username} 
                         name="email" 
                         onChange={this.handleChange} 
                         id="email" 
-                        placeholder="Your email..." />
-                    <label htmlFor="password">Password:</label>
-                    <input 
+                        placeholder="Your email..." 
+                    />
+                    <Input 
+                        proptype="input"
                         type="password" 
+                        labelfor="password"
+                        label="Password:"
                         value={this.state.password} 
                         name="password" 
                         onChange={this.handleChange}
                         id="password" 
-                        placeholder="Your password..." />
-                    <label htmlFor="message">Message:</label>
-                    <textarea 
+                        placeholder="Your password..." 
+                    />
+                    <Input 
+                        proptype="textarea"
+                        labelfor="message"
+                        label="Message:"
                         value={this.state.message} 
                         name="message" 
                         onChange={this.handleChange}
                         id="message" 
-                        placeholder="Your message...">
-                    </textarea>
-                    <input type="submit" value="Submit" />
+                        placeholder="Your message..."
+                    />
+                    <Input
+                        proptype="submit" 
+                        type="submit" 
+                        value="Submit" 
+                    />
                 </form>
             </div>
         )

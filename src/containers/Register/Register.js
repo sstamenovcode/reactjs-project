@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { registerUser } from '../../actions/authActions';
 
+import Input from '../../components/UI/Input/Input';
+
 class Register extends Component {
   state = {
     email: '',
@@ -25,21 +27,33 @@ class Register extends Component {
       <div className="contacts-container">
         <h1 className="heading">Register</h1>
         <form className="register-container" onSubmit={this.handleSubmit}>
-          <label htmlFor="email">Email:</label>
-          <input 
-            type="email" 
+          <Input
+            proptype="input"
+            type="email"
+            labelfor="email"
+            label="Email:"
             name="email" 
             value={this.state.email} 
             onChange={this.handleChange} 
-            placeholder="Your email..." />
-          <label htmlFor="password">Password:</label>
-          <input 
-            type="password" 
+            id="email"
+            placeholder="Your email..." 
+          />
+          <Input
+            proptype="input"
+            type="password"
+            labelfor="password"
+            label="Password:"
             name="password" 
             value={this.state.password} 
             onChange={this.handleChange} 
-            placeholder="Your password..." />
-          <input type="submit" value="Submit" />
+            id="password"
+            placeholder="Your password..."
+          />
+          <Input 
+            proptype="input"
+            type="submit" 
+            value="Submit" 
+          />
         </form>
       </div>
     )

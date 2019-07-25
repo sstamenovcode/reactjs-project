@@ -1,0 +1,22 @@
+.input-holder {
+  input, textarea {
+    display: block;
+    margin: 10px 0 10px 0;
+    padding: 20px;
+    width: 100%;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+  
+    &[type=submit] {
+      background: green;
+      color: #fff;
+      font-size: 1.1rem;
+      cursor: pointer;
+  
+      &:hover {
+        background: darkgreen;
+      }
+    }
+  }
+}
+
