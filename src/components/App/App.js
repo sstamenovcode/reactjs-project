@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
+import ReduxToastr from 'react-redux-toastr';
 import Toolbar from '../Toolbar/Toolbar';
 import Footer from '../Footer/Footer';
 import Home from '../Home/Home';
@@ -13,6 +14,7 @@ import Logout from '../../containers/Logout/Logout';
 import NotFound from '../NotFound/NotFound';
 import { getUserData } from '../../actions/authActions';
 import { isUserAuth } from '../../utility';
+
 import './App.scss';
 
 class App extends Component {
@@ -56,6 +58,16 @@ class App extends Component {
             {routes}
           </div>
           <Footer />
+          <ReduxToastr
+            timeOut={4000}
+            newestOnTop={false}
+            preventDuplicates
+            position="top-left"
+            transitionIn="fadeIn"
+            transitionOut="fadeOut"
+            progressBar
+            closeOnToastrClick 
+          />
         </div>
       </Router>
     );

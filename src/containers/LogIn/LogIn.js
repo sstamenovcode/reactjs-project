@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loginUser } from '../../actions/authActions';
-
 import Input from '../../components/UI/Input/Input';
+
+import './Login.scss';
 
 class Register extends Component {
   state = {

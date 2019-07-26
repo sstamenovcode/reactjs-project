@@ -1,5 +1,6 @@
 import { REGISTER_USER } from './types';
 import { LOGIN_USER, GET_USER, LOGOUT_USER } from './types';
+import { toastr } from 'react-redux-toastr';
 
 const registerUser = (email, password) => {
   return (dispatch) => {
@@ -18,6 +19,13 @@ const registerUser = (email, password) => {
     })
       .then(res => res.json())
       .then(userData => {
+        if (userData.error) {
+          userData.error.message === 'EMAIL_EXISTS' ? 
+            toastr.error('Email exists', 'Please try again with different email') : 
+            toastr.error('Error', 'Please try again with different input')
+          return;
+        }
+
         const expirationDate = new Date(new Date().getTime() + userData.expiresIn * 1000);
         localStorage.setItem('token', userData.idToken);
         localStorage.setItem('expiresIn', expirationDate);
@@ -27,7 +35,7 @@ const registerUser = (email, password) => {
         });
       })
       .catch(error => {
-        console.log(error);
+        console.log(error.message);
       });
   }
 };
@@ -50,6 +58,11 @@ const loginUser = (email, password) => {
     })
       .then(res => res.json())
       .then(userData => {
+        if (userData.error) {
+          toastr.error('Error', 'Please try again with different input');
+          return;
+        }
+
         const expirationDate = new Date(new Date().getTime() + userData.expiresIn * 1000);
         localStorage.setItem('token', userData.idToken);
         localStorage.setItem('expiresIn', expirationDate);
@@ -59,7 +72,7 @@ const loginUser = (email, password) => {
         });
       })
       .catch(error => {
-        console.log(error);
+        console.log(error.message);
       });
   }
 };
