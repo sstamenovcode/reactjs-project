@@ -24,7 +24,7 @@ class Register extends Component {
 
   render() {
     return (
-      <div className="contacts-container">
+      <div className="forms-container">
         <h1 className="heading">Register</h1>
         <form className="register-container" onSubmit={this.handleSubmit}>
           <Input

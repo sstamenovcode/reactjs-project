@@ -69,7 +69,7 @@ class Contacts extends Component {
         const messageInputErrorMessage = <p className="error-message">The message should be at least 20 characters long.</p>;
 
         return (
-            <div className="contacts-container">
+            <div className="forms-container">
                 <h1 className="heading">Contacts</h1>
                 <form onSubmit={this.handleSubmit}>
                     <Input
