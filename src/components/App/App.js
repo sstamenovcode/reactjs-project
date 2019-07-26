@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import ReduxToastr from 'react-redux-toastr';
-import Toolbar from '../Toolbar/Toolbar';
+import Toolbar from '../../containers/Toolbar/Toolbar';
 import Footer from '../Footer/Footer';
 import Home from '../Home/Home';
 import Posts from '../../containers/Posts/Posts';
