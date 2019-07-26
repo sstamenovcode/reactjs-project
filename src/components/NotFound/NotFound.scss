@@ -1,0 +1,19 @@
+.not-found-container {
+  width: 50vw;
+  margin: 0 auto;
+  padding: 0 20px 20px 20px;
+
+  p {
+    padding-bottom: 10px;
+    
+    &.message {
+      text-align: center;
+    }
+  }
+
+  img {
+    display: block;
+    margin: 0 auto;
+    padding-top: 20px;
+  }
+}

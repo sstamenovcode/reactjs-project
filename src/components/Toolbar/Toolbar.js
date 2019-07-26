@@ -6,7 +6,7 @@ const toolbar = (props) => {
     return (
         <header className="header">
             <NavLink to="/">
-                <span className="logo">The Natural Dating</span>
+                <span className="logo">Project</span>
             </NavLink>
             <nav>
                 <ul>
