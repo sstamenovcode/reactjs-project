@@ -23,7 +23,7 @@ class Toolbar extends Component {
                         <span className="logo">Project</span>
                     </NavLink>
                     <nav>
-                        <ul>
+                        <ul className="desktop-menu">
                             <NavLink to="/posts">
                                 <li>Blog</li>
                             </NavLink>
@@ -49,7 +49,8 @@ class Toolbar extends Component {
                             <div className="bar3"></div>
                         </div>
                         {this.state.isSideNavOpen ? 
-                            (<SideNav 
+                            (<SideNav
+                                isAuth={this.props.isAuth}
                                 isOpen={this.state.isSideNavOpen}
                                 unmountSideNav={this.toggleSideNav} 
                             />) : null}

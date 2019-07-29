@@ -20,7 +20,7 @@
       }
     }
 
-    ul {
+    ul.desktop-menu {
       display: none;
     }
   
@@ -47,7 +47,7 @@
 @media only screen and (min-width: 768px) {
   .toolbar-container {
     .header {
-      ul {
+      ul.desktop-menu {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;

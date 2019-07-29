@@ -10,6 +10,19 @@
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
+
+    ul.mobile-menu {
+      z-index: 500;
+      a {
+        display: block;
+        width: 100%;
+        color: #fff;
+      }
+
+      li {
+        padding-left: 40px;
+      }
+    }
   }
   
   .sidenav a {
