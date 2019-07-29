@@ -1,5 +1,9 @@
+.posts-container {
+    width: 90vw;
+    margin: 0 auto;
+}
+
 .post {
-    width: 50vw;
     margin: 0 auto 20px auto;
     padding: 10px;
     border: 1px solid red;
@@ -14,5 +18,11 @@
 
     .read-more-container {
         text-align: right;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .posts-container {
+        width: 50vw;
     }
 }

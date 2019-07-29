@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../../actions/postActions';
+
 import './Posts.scss';
 
 class Posts extends Component {
@@ -31,7 +32,7 @@ class Posts extends Component {
         });
 
         return (
-            <div>
+            <div className="posts-container">
                 <h1 className="heading">Posts</h1>
                 {postItems}
             </div>
