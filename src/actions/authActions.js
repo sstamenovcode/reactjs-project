@@ -29,6 +29,7 @@ const registerUser = (email, password) => {
         const expirationDate = new Date(new Date().getTime() + userData.expiresIn * 1000);
         localStorage.setItem('token', userData.idToken);
         localStorage.setItem('expiresIn', expirationDate);
+        checkAuthTimeout(parseInt(userData.expiresIn, 10));
         dispatch({
           type: REGISTER_USER,
           payload: userData
@@ -66,6 +67,7 @@ const loginUser = (email, password) => {
         const expirationDate = new Date(new Date().getTime() + userData.expiresIn * 1000);
         localStorage.setItem('token', userData.idToken);
         localStorage.setItem('expiresIn', expirationDate);
+        checkAuthTimeout(parseInt(userData.expiresIn, 10));
         dispatch({
           type: LOGIN_USER,
           payload: userData
@@ -105,6 +107,12 @@ const getUserData = () => {
   }
 };
 
+const checkAuthTimeout = (expirationTime) => {
+  setTimeout(() => {
+    logoutUser();
+  }, expirationTime * 1000);
+}
+
 const logoutUser = () => {
   return (dispatch) => {
     localStorage.removeItem('token');
@@ -119,5 +127,6 @@ export {
   registerUser,
   loginUser,
   getUserData,
+  checkAuthTimeout,
   logoutUser
 };
