@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import './SideNav.scss';
 
@@ -13,8 +14,9 @@ class SideNav extends Component {
       <div className="sidenav" id="sideNav">
         <a href="javascript:void(0)" className="closebtn" onClick={this.closeNav}>&times;</a>
         <ul className="mobile-menu">
+          {this.props.isAuth ? <NavLink to="/user-profile" onClick={this.closeNav} className="user-profile-link"><li>{this.props.email}</li></NavLink> : null}
           <NavLink to="/" onClick={this.closeNav}><li>Home</li></NavLink>
-          <NavLink to="/blog" onClick={this.closeNav}><li>Blog</li></NavLink>
+          <NavLink to="/posts" onClick={this.closeNav}><li>Blog</li></NavLink>
           <NavLink to="/about-us" onClick={this.closeNav}><li>About us</li></NavLink>
           <NavLink to="/contacts" onClick={this.closeNav}><li>Contacts</li></NavLink>
           {!this.props.isAuth ? <NavLink to="/register" onClick={this.closeNav}><li>Register</li></NavLink> : null}
@@ -26,4 +28,8 @@ class SideNav extends Component {
   }
 }
 
-export default SideNav;
+const mapStateToProps = state => ({
+  email: state.auth.email
+})
+
+export default connect(mapStateToProps, null)(SideNav);

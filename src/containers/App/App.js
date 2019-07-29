@@ -2,16 +2,17 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import ReduxToastr from 'react-redux-toastr';
-import Toolbar from '../../containers/Toolbar/Toolbar';
-import Footer from '../Footer/Footer';
-import Home from '../Home/Home';
-import Posts from '../../containers/Posts/Posts';
-import AboutUs from '../AboutUs/AboutUs';
-import Contacts from '../../containers/Contacts/Contacts';
-import Register from '../../containers/Register/Register';
-import Login from '../../containers/Login/Login';
-import Logout from '../../containers/Logout/Logout';
-import NotFound from '../NotFound/NotFound';
+import Toolbar from '../Toolbar/Toolbar';
+import Footer from '../../components/Footer/Footer';
+import Home from '../../components/Home/Home';
+import UserProfile from '../UserProfile/UserProfile';
+import Posts from '../Posts/Posts';
+import AboutUs from '../../components/AboutUs/AboutUs';
+import Contacts from '../Contacts/Contacts';
+import Register from '../Register/Register';
+import Login from '../Login/Login';
+import Logout from '../Logout/Logout';
+import NotFound from '../../components/NotFound/NotFound';
 import { getUserData } from '../../actions/authActions';
 import { isUserAuth } from '../../utility';
 
@@ -29,7 +30,8 @@ class App extends Component {
       routes = (
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/posts" exact component={Posts} />
+          <Route path="/user-profile" component={UserProfile} />
+          <Route path="/posts" component={Posts} />
           <Route path="/about-us" component={AboutUs} />
           <Route path="/contacts" component={Contacts} />
           <Route path="/logout" component={Logout} />

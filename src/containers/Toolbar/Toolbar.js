@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
 import SideNav from '../SideNav/SideNav';
 
 import './Toolbar.scss';
@@ -24,6 +25,9 @@ class Toolbar extends Component {
                     </NavLink>
                     <nav>
                         <ul className="desktop-menu">
+                            <NavLink to="/user-profile">
+                                <li>{this.props.email}</li>
+                            </NavLink>
                             <NavLink to="/posts">
                                 <li>Blog</li>
                             </NavLink>
@@ -61,4 +65,8 @@ class Toolbar extends Component {
     }
 }
 
-export default Toolbar;
+const mapStateToProps = state => ({
+    email: state.auth.email
+})
+
+export default connect(mapStateToProps, null)(Toolbar);
