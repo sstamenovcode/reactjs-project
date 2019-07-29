@@ -1,9 +1,15 @@
 .about-us-container {
-    width: 50vw;
+    width: 90vw;
     margin: 0 auto;
     padding: 0 20px 20px 20px;
 
     p {
         padding-bottom: 10px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .about-us-container {
+        width: 50vw;
     }
 }
