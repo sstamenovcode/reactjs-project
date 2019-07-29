@@ -25,9 +25,9 @@ class Toolbar extends Component {
                     </NavLink>
                     <nav>
                         <ul className="desktop-menu">
-                            <NavLink to="/user-profile">
+                            {this.props.email ? <NavLink to="/user-profile">
                                 <li>{this.props.email}</li>
-                            </NavLink>
+                            </NavLink> : null}
                             <NavLink to="/posts">
                                 <li>Blog</li>
                             </NavLink>
