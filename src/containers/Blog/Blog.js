@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../../actions/postActions';
 
-import './Posts.scss';
+import './Blog.scss';
 
 class Posts extends Component {
     componentDidMount() {
@@ -32,7 +32,7 @@ class Posts extends Component {
         });
 
         return (
-            <div className="posts-container">
+            <div className="blog-container">
                 <h1 className="heading">Posts</h1>
                 {postItems}
             </div>
