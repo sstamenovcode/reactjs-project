@@ -12,7 +12,7 @@ class SideNav extends Component {
   render() {
     return (
       <div className="sidenav" id="sideNav">
-        <a href="javascript:void(0)" className="closebtn" onClick={this.closeNav}>&times;</a>
+        <button className="close-btn" onClick={this.closeNav}>&times;</button>
         <ul className="mobile-menu">
           {this.props.isAuth ? <NavLink to="/user-profile" onClick={this.closeNav} className="user-profile-link"><li>{this.props.email}</li></NavLink> : null}
           <NavLink to="/" onClick={this.closeNav}><li>Home</li></NavLink>

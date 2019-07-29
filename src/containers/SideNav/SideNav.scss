@@ -42,11 +42,18 @@
     color: #f1f1f1;
   }
   
-  .sidenav .closebtn {
+  .sidenav .close-btn {
     position: absolute;
-    top: 0;
+    top: 8px;
     right: 25px;
-    font-size: 36px;
     margin-left: 50px;
+    padding: 0 10px;
+    border: none;
+    font-size: 36px;
+    cursor: pointer;
+
+    &:hover {
+      background: red;
+    }
   }
 }
