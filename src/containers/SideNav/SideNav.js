@@ -13,13 +13,13 @@ class SideNav extends Component {
       <div className="sidenav" id="sideNav">
         <a href="javascript:void(0)" className="closebtn" onClick={this.closeNav}>&times;</a>
         <ul className="mobile-menu">
-          <NavLink to="/"><li>Home</li></NavLink>
-          <NavLink to="/blog"><li>Blog</li></NavLink>
-          <NavLink to="/about-us"><li>About us</li></NavLink>
-          <NavLink to="/contacts"><li>Contacts</li></NavLink>
-          {!this.props.isAuth ? <NavLink to="/register"><li>Register</li></NavLink> : null}
-          {!this.props.isAuth ? <NavLink to="/login"><li>Login</li></NavLink> : null}
-          {this.props.isAuth ? <NavLink to="/logout"><li>Logout</li></NavLink> : null}
+          <NavLink to="/" onClick={this.closeNav}><li>Home</li></NavLink>
+          <NavLink to="/blog" onClick={this.closeNav}><li>Blog</li></NavLink>
+          <NavLink to="/about-us" onClick={this.closeNav}><li>About us</li></NavLink>
+          <NavLink to="/contacts" onClick={this.closeNav}><li>Contacts</li></NavLink>
+          {!this.props.isAuth ? <NavLink to="/register" onClick={this.closeNav}><li>Register</li></NavLink> : null}
+          {!this.props.isAuth ? <NavLink to="/login" onClick={this.closeNav}><li>Login</li></NavLink> : null}
+          {this.props.isAuth ? <NavLink to="/logout" onClick={this.closeNav}><li>Logout</li></NavLink> : null}
         </ul>
       </div>
     )
