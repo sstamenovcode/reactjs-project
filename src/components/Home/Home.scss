@@ -17,6 +17,33 @@
 }
 
 .latest-blog-posts {
-    padding: 10px 0;
+    padding: 20px 0;
     text-align: center;
+}
+
+.latest-posts-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 0 10%;
+
+    .post {
+        position: relative;
+        width: 100%;
+        margin: 0 auto 20px auto;
+        padding: 10px 10px 30px 10px;
+    
+        .post-title {
+            padding: 0 0 10px 0;
+        }
+    
+        .post-text {
+            padding: 5px 0 0 0;
+        }
+    
+        .read-more-container {
+            position: absolute;
+            right: 15px;
+            bottom: 5px;
+        }
+    }
 }

@@ -1,23 +1,23 @@
 .blog-container {
     width: 90vw;
     margin: 0 auto;
-}
 
-.post {
-    margin: 0 auto 20px auto;
-    padding: 10px;
-    border: 1px solid red;
-
-    .post-title {
-        padding: 0 0 10px 0;
-    }
-
-    .post-text {
-        padding: 5px 0 0 0;
-    }
-
-    .read-more-container {
-        text-align: right;
+    .post {
+        margin: 0 auto 20px auto;
+        padding: 10px;
+        border: 1px solid red;
+    
+        .post-title {
+            padding: 0 0 10px 0;
+        }
+    
+        .post-text {
+            padding: 5px 0 0 0;
+        }
+    
+        .read-more-container {
+            text-align: right;
+        }
     }
 }
 

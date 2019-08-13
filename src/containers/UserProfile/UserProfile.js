@@ -6,7 +6,7 @@ class UserProfile extends Component {
   render() {
     return (
       <div className="user-profile-container">
-        <h1 className="heading">Your profile</h1>
+        <h1 className="heading">Твоят профил</h1>
       </div>
     )
   }

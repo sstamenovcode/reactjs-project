@@ -21,7 +21,7 @@ class Toolbar extends Component {
             <div className="toolbar-container">
                 <header className="header">
                     <NavLink to="/">
-                        <span className="logo">Project</span>
+                        <span className="logo">The Natural Dating</span>
                     </NavLink>
                     <nav>
                         <ul className="desktop-menu">
