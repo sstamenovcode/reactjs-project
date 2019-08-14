@@ -18,7 +18,7 @@ import { isUserAuth } from '../../utility';
 
 import './App.scss';
 
-class App extends Component {
+export class App extends Component {
   componentDidMount() {
     return isUserAuth() ? this.props.getUserDataAction() : null;
   }

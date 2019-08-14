@@ -6,7 +6,7 @@ import { truncate } from '../../utility';
  
 import './Home.scss';
 
-class Home extends Component {
+export class Home extends Component {
     componentDidMount() {
         this.props.fetchPosts();
     }
