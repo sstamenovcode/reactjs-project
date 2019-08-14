@@ -14,7 +14,9 @@ const pagination = (props) => {
       <ul className="pagination">
         {pageNumbers.map(number => {
           return <li key={number}>
-                  <button onClick={() => props.paginate(number)}>
+                  <button 
+                    onClick={() => props.paginate(number)}
+                    className={props.activePage === number ? 'active-page' : ''}>
                     {number}
                   </button>
                  </li>

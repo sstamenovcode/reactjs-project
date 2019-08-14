@@ -38,7 +38,8 @@ class Blog extends Component {
                 <Pagination 
                     totalPosts={this.props.posts.length}
                     postsPerPage={this.state.postsPerPage}
-                    paginate={this.paginate}     
+                    paginate={this.paginate}
+                    activePage={this.state.currentPage}
                 />
             </div>
         );
