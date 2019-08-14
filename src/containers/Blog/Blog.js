@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../../actions/postActions';
 import Posts from '../Posts/Posts';
+import Pagination from '../../components/Pagination/Pagination';
 
 import './Blog.scss';
 
@@ -16,11 +17,29 @@ class Blog extends Component {
         postsPerPage: 5
     }
 
+    paginate = (number) => {
+        this.setState({
+            currentPage: number
+        })
+    }
+
     render() {
+        const indexOfLastPost = this.state.postsPerPage * this.state.currentPage;
+        const indexOfFirstPost = indexOfLastPost - this.state.postsPerPage;
+        const currentPosts = this.props.posts.slice(indexOfFirstPost, indexOfLastPost);
+
         return (
             <div className="blog-container">
                 <h1 className="heading">Posts</h1>
-                <Posts postItems={this.props.posts} />
+                <Posts 
+                    postItems={currentPosts}
+                    loading={this.state.loading}
+                />
+                <Pagination 
+                    totalPosts={this.props.posts.length}
+                    postsPerPage={this.state.postsPerPage}
+                    paginate={this.paginate}     
+                />
             </div>
         );
     }

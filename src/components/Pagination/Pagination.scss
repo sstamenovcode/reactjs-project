@@ -1,0 +1,17 @@
+.pagination-container {
+  padding-bottom: 20px;
+
+  .pagination {
+    list-style: none;
+
+    li {
+      display: inline-block;
+    }
+
+    button {
+      padding: 10px;
+      margin-right: 5px;
+      cursor: pointer;
+    }
+  }
+}
