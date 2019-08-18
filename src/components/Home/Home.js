@@ -24,9 +24,7 @@ export class Home extends Component {
         return (
             <div>
                 <div className="hero-image">
-                    <div className="hero-text">
-                        <h1>The Natural Dating</h1>
-                    </div>
+                    <h1 className="hero-text">Find information about the club you want.</h1>
                 </div>
                 <h2 className="latest-blog-posts">&#60;&#60; Latest blog posts 	&#62;&#62;</h2>
                 <div className="latest-posts-container">
