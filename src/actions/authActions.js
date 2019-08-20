@@ -16,7 +16,8 @@ const registerUser = (email, password) => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(authData)
-    })
+      }
+    )
       .then(res => res.json())
       .then(userData => {
         if (userData.error) {
@@ -56,7 +57,8 @@ const loginUser = (email, password) => {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(authData)
-    })
+      }
+    )
       .then(res => res.json())
       .then(userData => {
         if (userData.error) {
@@ -92,7 +94,8 @@ const getUserData = () => {
           body: JSON.stringify({
             idToken: userToken
           })
-      })
+        }
+      )
         .then(res => res.json())
         .then(data => {
           dispatch({

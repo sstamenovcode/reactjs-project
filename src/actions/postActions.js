@@ -18,5 +18,8 @@ export const fetchPosts = () => {
             payload: docs
           })
         })
+        .catch(function(error) {
+          console.log(error);
+        });
   }
 }

@@ -7,56 +7,82 @@ import './Contacts.scss';
 class Contacts extends Component {
     state = {
         email: '',
-        password: '',
         message: '',
-        inputEmailStyle: null,
-        inputPasswordStyle: null,
-        inputMessageStyle: null
+        isHuman: false,
+        isEmailValid: false,
+        isMessageValid: false,
+        isFormDirty: false
     }
 
     handleChange = (e) => {
         this.setState({ [e.target.name]: e.target.value })
     }
 
+    toggleChangeIsHuman = (e) => {
+        this.setState({
+            isHuman: !this.state.isHuman
+        })
+    }
+
     handleSubmit = async (e) => {
         e.preventDefault();
+        this.setState(state => ({ isFormDirty: true }))
         await this.setErrorClasses();
         const isValid = this.checkValidity();
-        return isValid ? this.clearUserDataState() : null;
+        if (isValid) {
+            const message = this.state.message;
+            const url = `https://us-central1-test-72840.cloudfunctions.net/sendMail?from=${this.state.email}&message=${message}`;
+            fetch(url, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                      'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(message)
+                }
+            )
+                .then(() => { 
+                    return this.clearUserDataState();
+                })
+                .catch(function(error) {
+                    console.log(error);
+                });
+        }
     }
 
     clearUserDataState = () => {
         this.setState({
             email: '',
-            password: '',
-            message: ''
+            message: '',
+            isHuman: false,
+            isFormDirty: false
         });
     }
 
     setErrorClasses = () => {
         if (!validateEmail(this.state.email)) {
-            this.setState(state => ({ inputEmailStyle: 'invalid' }))
+            this.setState(state => ({ isEmailValid: false }))
         } else {
-            this.setState(state => ({ inputEmailStyle: null }));
-        }
-
-        if (this.state.password.length < 8) {
-            this.setState(state => ({ inputPasswordStyle: 'invalid' }));
-        } else {
-            this.setState(state => ({ inputPasswordStyle: null }));
+            this.setState(state => ({ isEmailValid: true }));
         }
 
         if (this.state.message.length < 20) {
-            this.setState(state => ({ inputMessageStyle: 'invalid' }));
+            this.setState(state => ({ isMessageValid: false }));
         } else {
-            this.setState(state => ({ inputMessageStyle: null })); 
+            this.setState(state => ({ isMessageValid: true })); 
+        }
+
+        if (!this.state.isHuman) {
+            this.setState(state => ({ isHuman: false }));
+        } else {
+            this.setState(state => ({ isHuman: true })); 
         }
     }
 
     checkValidity = () => {
-        if (this.state.inputEmailStyle || 
-            this.state.inputPasswordStyle || 
-            this.state.inputMessageStyle) {
+        if (!this.state.isEmailValid || 
+            !this.state.isMessageValid ||
+            !this.state.isHuman) {
             return false;
         } else {
             return true;
@@ -65,8 +91,8 @@ class Contacts extends Component {
 
     render() {
         const emailInputErrorMessage = <p className="error-message">The email is not valid.</p>;
-        const passwordInputErrorMessage = <p className="error-message">The password should be at least 8 characters long.</p>;
         const messageInputErrorMessage = <p className="error-message">The message should be at least 20 characters long.</p>;
+        const isHumanInputErrorMessage = <p className="error-message">In order to send the message, you should confirm that you are human.</p>
 
         return (
             <div className="forms-container">
@@ -85,21 +111,7 @@ class Contacts extends Component {
                         placeholder="Your email..."
                         required 
                     />
-                    {this.state.inputEmailStyle ? emailInputErrorMessage : null}
-                    <Input 
-                        proptype="input"
-                        type="password" 
-                        labelfor="password"
-                        label="Password:"
-                        className={this.state.inputPasswordStyle}
-                        value={this.state.password} 
-                        name="password"
-                        onChange={this.handleChange}
-                        id="password" 
-                        placeholder="Your password..."
-                        required
-                    />
-                    {this.state.inputPasswordStyle ? passwordInputErrorMessage : null}
+                    {!this.state.isEmailValid && this.state.isFormDirty ? emailInputErrorMessage : null}
                     <Input 
                         proptype="textarea"
                         labelfor="message"
@@ -112,7 +124,17 @@ class Contacts extends Component {
                         placeholder="Your message..."
                         required
                     />
-                    {this.state.inputMessageStyle ? messageInputErrorMessage : null}
+                    {!this.state.isMessageValid && this.state.isFormDirty ? messageInputErrorMessage : null}
+                    <div className="check-human-input">
+                        <input
+                            type="checkbox"
+                            name="isHuman"
+                            value="isHuman"
+                            checked={this.state.isHuman}
+                            onChange={this.toggleChangeIsHuman}
+                        /> Check if you are human.
+                    {!this.state.isHuman && this.state.isFormDirty ? isHumanInputErrorMessage : null}
+                    </div>
                     <Input
                         proptype="submit" 
                         type="submit" 
