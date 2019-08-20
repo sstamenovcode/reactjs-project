@@ -3,6 +3,19 @@
     margin: 0 auto;
     padding: 0 20px 20px 20px;
 
+    .text-container {
+        padding: 10px;
+        border: 1px solid #177707;
+        border-radius: 10px;
+
+        .football-ball {
+            display: block;
+            margin: 0 auto;
+            width: 30%;
+            height: auto;
+        }
+    }
+
     p {
         padding-bottom: 10px;
     }

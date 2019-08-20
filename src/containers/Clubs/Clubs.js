@@ -4,9 +4,9 @@ import { fetchPosts } from '../../actions/postActions';
 import Posts from '../Posts/Posts';
 import Pagination from '../../components/Pagination/Pagination';
 
-import './Blog.scss';
+import './Clubs.scss';
 
-class Blog extends Component {
+class Clubs extends Component {
     componentDidMount() {
         this.props.fetchPosts();
     }
@@ -29,8 +29,8 @@ class Blog extends Component {
         const currentPosts = this.props.posts.slice(indexOfFirstPost, indexOfLastPost);
 
         return (
-            <div className="blog-container">
-                <h1 className="heading">Posts</h1>
+            <div className="clubs-container">
+                <h1 className="heading">Find clubs</h1>
                 <Posts 
                     postItems={currentPosts}
                     loading={this.state.loading}
@@ -56,4 +56,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Blog);
+export default connect(mapStateToProps, mapDispatchToProps)(Clubs);

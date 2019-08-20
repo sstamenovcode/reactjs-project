@@ -6,7 +6,7 @@ import Toolbar from '../Toolbar/Toolbar';
 import Footer from '../../components/Footer/Footer';
 import Home from '../../components/Home/Home';
 import UserProfile from '../UserProfile/UserProfile';
-import Blog from '../Blog/Blog';
+import Clubs from '../Clubs/Clubs';
 import AboutUs from '../../components/AboutUs/AboutUs';
 import Contacts from '../Contacts/Contacts';
 import Register from '../Register/Register';
@@ -31,7 +31,7 @@ export class App extends Component {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/user-profile" component={UserProfile} />
-          <Route path="/blog" component={Blog} />
+          <Route path="/clubs" component={Clubs} />
           <Route path="/about-us" component={AboutUs} />
           <Route path="/contacts" component={Contacts} />
           <Route path="/logout" component={Logout} />
@@ -42,7 +42,7 @@ export class App extends Component {
       routes = (
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/blog" exact component={Blog} />
+          <Route path="/clubs" exact component={Clubs} />
           <Route path="/about-us" component={AboutUs} />
           <Route path="/contacts" component={Contacts} />
           <Route path="/register" component={Register} />

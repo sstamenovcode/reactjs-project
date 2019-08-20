@@ -9,7 +9,7 @@ const notFound = () => {
             <p className="message">
                 Please, tell Chuck Norris about that. He can find the page for sure.
             </p>
-            <img 
+            <img
                 src="https://live.staticflickr.com/3521/3847818322_f49bc1f7cf.jpg"
                 alt="Not Found" 
             />
