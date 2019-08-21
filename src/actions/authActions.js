@@ -110,12 +110,6 @@ const getUserData = () => {
   }
 };
 
-const checkAuthTimeout = (expirationTime) => {
-  setTimeout(() => {
-    logoutUser();
-  }, expirationTime * 1000);
-}
-
 const logoutUser = () => {
   return (dispatch) => {
     localStorage.removeItem('token');
@@ -125,6 +119,12 @@ const logoutUser = () => {
     });
   }
 };
+
+const checkAuthTimeout = (expirationTime) => {
+  setTimeout(() => {
+    logoutUser();
+  }, expirationTime * 1000);
+}
 
 export {
   registerUser,
