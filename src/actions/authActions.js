@@ -69,7 +69,7 @@ const loginUser = (email, password) => {
         const expirationDate = new Date(new Date().getTime() + userData.expiresIn * 1000);
         localStorage.setItem('token', userData.idToken);
         localStorage.setItem('expiresIn', expirationDate);
-        checkAuthTimeout(parseInt(userData.expiresIn, 10));
+        checkAuthTimeout(parseInt(userData.expiresIn, 10), dispatch);
         dispatch({
           type: LOGIN_USER,
           payload: userData
@@ -120,9 +120,9 @@ const logoutUser = () => {
   }
 };
 
-const checkAuthTimeout = (expirationTime) => {
+const checkAuthTimeout = (expirationTime, dispatch) => {
   setTimeout(() => {
-    logoutUser();
+    logoutUser()(dispatch);
   }, expirationTime * 1000);
 }
 
