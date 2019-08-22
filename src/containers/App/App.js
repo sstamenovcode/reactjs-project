@@ -5,10 +5,11 @@ import ReduxToastr from 'react-redux-toastr';
 import Toolbar from '../Toolbar/Toolbar';
 import Footer from '../../components/Footer/Footer';
 import Home from '../../components/Home/Home';
-import AdminDashboard from '../Admin/AdminDashboard/AdminDashboard';
+import AdminDashboard from '../../containers/Admin/AdminDashboard/AdminDashboard';
 import UserProfile from '../UserProfile/UserProfile';
 import Clubs from '../../containers/Clubs/Clubs';
 import Club from '../../containers/Club/Club';
+import AdminEditClub from '../../containers/Admin/AdminEditClub/AdminEditClub';
 import AboutUs from '../../components/AboutUs/AboutUs';
 import Contacts from '../Contacts/Contacts';
 import Register from '../Register/Register';
@@ -34,6 +35,7 @@ export class App extends Component {
           <Route path="/" exact component={Home} />
           <Route path="/user-profile" component={UserProfile} />
           <Route path="/admin-dashboard" component={AdminDashboard} />
+          <Route path="/posts/:id" component={AdminEditClub} />
           <Route path="/clubs" exact component={Clubs} />
           <Route path="/clubs/:id" component={Club} />
           <Route path="/about-us" component={AboutUs} />
@@ -46,7 +48,6 @@ export class App extends Component {
       routes = (
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/admin-dashboard" component={AdminDashboard} />
           <Route path="/clubs" exact component={Clubs} />
           <Route path="/clubs/:id" component={Club} />
           <Route path="/about-us" component={AboutUs} />
