@@ -1,5 +1,5 @@
 import FireStoreParser from 'firestore-parser';
-import { FETCH_POSTS, FETCH_POST } from './types';
+import { FETCH_POSTS, FETCH_POST, DELETE_POST } from './types';
 import firestoreConfig from '../firestoreConfig';
 import { parseFirestoreData } from '../utility';
 
@@ -41,5 +41,14 @@ export const fetchPost = (id) => {
         .catch(function(error) {
           console.log(error);
         });
+  }
+}
+
+export const deletePost = (id) => {
+  return (dispatch) => {
+        dispatch({ 
+          type: DELETE_POST,
+          payload: {}
+        })
   }
 }

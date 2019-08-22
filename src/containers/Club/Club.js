@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchPost } from '../../actions/postActions';
+import { fetchPost, deletePost } from '../../actions/postActions';
 
 import './Club.scss';
 
 class Club extends Component {
   componentDidMount() {
     this.props.fetchPost(this.props.match.params.id);
+  }
+
+  componentWillUnmount() {
+    this.props.deletePost(this.props.match.params.id);
   }
 
   render() {
@@ -25,7 +29,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-      fetchPost: (id) => dispatch(fetchPost(id))
+      fetchPost: (id) => dispatch(fetchPost(id)),
+      deletePost: (id) => dispatch(deletePost(id))
   }
 }
 
