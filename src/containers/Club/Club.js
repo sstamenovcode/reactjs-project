@@ -1,16 +1,32 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { fetchPost } from '../../actions/postActions';
+
+import './Club.scss';
 
 class Club extends Component {
-  render() {
-    console.log(this.props.match.params.id);
+  componentDidMount() {
+    this.props.fetchPost(this.props.match.params.id);
+  }
 
+  render() {
     return (
       <div>
-        lorem
+        {this.props.post.title}
       </div>
     )
   }
 }
 
-export default withRouter(Club);
+const mapStateToProps = state => ({
+  post: state.posts.post
+})
+
+const mapDispatchToProps = dispatch => {
+  return {
+      fetchPost: (id) => dispatch(fetchPost(id))
+  }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Club));

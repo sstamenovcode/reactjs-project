@@ -122,6 +122,7 @@ const logoutUser = () => {
 
 const checkAuthTimeout = (expirationTime) => {
   setTimeout(() => {
+    debugger
     logoutUser();
   }, expirationTime * 1000);
 }
