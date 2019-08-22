@@ -7,7 +7,8 @@ import Footer from '../../components/Footer/Footer';
 import Home from '../../components/Home/Home';
 import AdminDashboard from '../Admin/AdminDashboard/AdminDashboard';
 import UserProfile from '../UserProfile/UserProfile';
-import Clubs from '../Clubs/Clubs';
+import Clubs from '../../containers/Clubs/Clubs';
+import Club from '../../containers/Club/Club';
 import AboutUs from '../../components/AboutUs/AboutUs';
 import Contacts from '../Contacts/Contacts';
 import Register from '../Register/Register';
@@ -33,7 +34,8 @@ export class App extends Component {
           <Route path="/" exact component={Home} />
           <Route path="/user-profile" component={UserProfile} />
           <Route path="/admin-dashboard" component={AdminDashboard} />
-          <Route path="/clubs" component={Clubs} />
+          <Route path="/clubs" exact component={Clubs} />
+          <Route path="/clubs/:id" component={Club} />
           <Route path="/about-us" component={AboutUs} />
           <Route path="/contacts" component={Contacts} />
           <Route path="/logout" component={Logout} />
@@ -46,6 +48,7 @@ export class App extends Component {
           <Route path="/" exact component={Home} />
           <Route path="/admin-dashboard" component={AdminDashboard} />
           <Route path="/clubs" exact component={Clubs} />
+          <Route path="/clubs/:id" component={Club} />
           <Route path="/about-us" component={AboutUs} />
           <Route path="/contacts" component={Contacts} />
           <Route path="/register" component={Register} />

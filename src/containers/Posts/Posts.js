@@ -12,7 +12,7 @@ class Posts extends Component {
                   <hr />
                   <p className="post-text">{truncate(post.text)}</p>
                   <div className="read-more-container">
-                      <Link to={`/posts/${post.id}`}>Read more</Link>
+                      <Link to={`/clubs/${post.id}`}>Read more</Link>
                   </div>
               </div>
     });
