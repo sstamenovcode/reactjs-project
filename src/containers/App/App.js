@@ -5,6 +5,7 @@ import ReduxToastr from 'react-redux-toastr';
 import Toolbar from '../Toolbar/Toolbar';
 import Footer from '../../components/Footer/Footer';
 import Home from '../../components/Home/Home';
+import AdminDashboard from '../Admin/AdminDashboard/AdminDashboard';
 import UserProfile from '../UserProfile/UserProfile';
 import Clubs from '../Clubs/Clubs';
 import AboutUs from '../../components/AboutUs/AboutUs';
@@ -31,6 +32,7 @@ export class App extends Component {
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/user-profile" component={UserProfile} />
+          <Route path="/admin-dashboard" component={AdminDashboard} />
           <Route path="/clubs" component={Clubs} />
           <Route path="/about-us" component={AboutUs} />
           <Route path="/contacts" component={Contacts} />
@@ -42,6 +44,7 @@ export class App extends Component {
       routes = (
         <Switch>
           <Route path="/" exact component={Home} />
+          <Route path="/admin-dashboard" component={AdminDashboard} />
           <Route path="/clubs" exact component={Clubs} />
           <Route path="/about-us" component={AboutUs} />
           <Route path="/contacts" component={Contacts} />

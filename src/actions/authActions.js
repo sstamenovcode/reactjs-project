@@ -130,6 +130,6 @@ export {
   registerUser,
   loginUser,
   getUserData,
-  checkAuthTimeout,
-  logoutUser
+  logoutUser,
+  checkAuthTimeout
 };

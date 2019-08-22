@@ -31,7 +31,7 @@ class Clubs extends Component {
         return (
             <div className="clubs-container">
                 <h1 className="heading">Find clubs</h1>
-                <Posts 
+                <Posts
                     postItems={currentPosts}
                     loading={this.state.loading}
                 />

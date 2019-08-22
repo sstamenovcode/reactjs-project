@@ -28,6 +28,9 @@ class Toolbar extends Component {
                             {this.props.email ? <NavLink to="/user-profile">
                                 <li>{this.props.email}</li>
                             </NavLink> : null}
+                            {this.props.email ? <NavLink to="/admin-dashboard">
+                                <li>Dashboard</li>
+                            </NavLink> : null}
                             <NavLink to="/clubs">
                                 <li>Clubs</li>
                             </NavLink>
