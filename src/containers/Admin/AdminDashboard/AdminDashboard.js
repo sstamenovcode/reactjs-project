@@ -14,9 +14,11 @@ class AdminDashboard extends Component {
   render() {
     const postItems = this.props.posts.map((post, i) => {
       return  <div key={i} className="post">
-                  <h3 className="post-title">{post.title}</h3>
-                  <hr />
-                  <Link to={`/posts/${post.id}`}><p className="post-text">{truncate(post.text)}</p></Link>
+                  <Link to={`/posts/${post.id}`}>
+                    <h3 className="post-title">{post.title}</h3>
+                    <hr />
+                    <p className="post-text">{truncate(post.text)}</p>
+                  </Link>
               </div>
     });
 

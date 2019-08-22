@@ -1,6 +1,31 @@
 .admin-dashboard-container {
   width: 90vw;
   margin: 0 auto;
+  padding-bottom: 20px;
+
+  .post {
+    padding: 10px;
+  }
+
+  .post:nth-child(even) {
+    background: #ddd;
+  }
+
+  .post:hover {
+    background: #7cd073;
+  }
+
+  hr {
+    border-top: 1px solid #2b7b2d;
+  }
+
+  a {
+    color: #000;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
 }
 
 @media only screen and (min-width: 768px) {
