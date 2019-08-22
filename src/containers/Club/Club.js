@@ -16,8 +16,9 @@ class Club extends Component {
 
   render() {
     return (
-      <div>
-        {this.props.post.title}
+      <div className="club-container">
+        <h1 className="heading">{this.props.post.title}</h1>
+        <p>{this.props.post.text}</p>
       </div>
     )
   }

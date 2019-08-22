@@ -1,0 +1,10 @@
+.club-container {
+  width: 90vw;
+  margin: 0 auto;
+}
+
+@media only screen and (min-width: 768px) {
+  .club-container {
+      width: 50vw;
+  }
+}
