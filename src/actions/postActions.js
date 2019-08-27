@@ -44,6 +44,37 @@ export const fetchPost = (id) => {
   }
 }
 
+export const editPost = (id, title, text) => {
+  return (dispatch) => {
+    const doc = 'articles';
+    const url = `https://firestore.googleapis.com/v1beta1/projects/${firestoreConfig.projectId}/databases/(default)/documents/${doc}/${id}?key=${firestoreConfig.apiKey}`;
+
+    fetch(url, { 
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: id,
+        fields: {
+          id, title, text
+        }
+      })
+    })
+        .then(response => response.json())
+        .then(json => FireStoreParser(json))
+        .then(doc => {
+          dispatch({ 
+            type: FETCH_POST,
+            payload: doc.fields
+          })
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+  }
+}
+
 export const deletePost = (id) => {
   return (dispatch) => {
         dispatch({ 

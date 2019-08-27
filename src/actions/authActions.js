@@ -112,6 +112,7 @@ const getUserData = () => {
 
 const logoutUser = () => {
   return (dispatch) => {
+    debugger
     localStorage.removeItem('token');
     localStorage.removeItem('expiresIn');
     dispatch({
@@ -123,7 +124,7 @@ const logoutUser = () => {
 const checkAuthTimeout = (expirationTime, dispatch) => {
   setTimeout(() => {
     logoutUser()(dispatch);
-  }, expirationTime * 1000);
+  }, expirationTime * 950);
 }
 
 export {

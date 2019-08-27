@@ -9,6 +9,26 @@
     height: 200px;
     margin: 0 auto;
   }
+
+  #text {
+    margin-top: 10px;
+  }
+  
+  .post-actions-container {
+    display: flex;
+
+    .input-holder {
+      flex: 50%;
+    }
+
+    .delete-post-btn {
+      margin-bottom: 20px;
+      background: red;
+      color: #fff;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+  }
 }
 
 @media only screen and (min-width: 768px) {
