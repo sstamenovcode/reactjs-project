@@ -38,12 +38,13 @@ class AdminEditClub extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.editPost(this.props.match.params.id, this.state.title, this.state.text);
-    this.props.history.push({pathname: '/posts'});
+    this.props.history.push({pathname: '/admin-dashboard'});
   }
 
   deletePost = (e) => {
     e.preventDefault();
-    this.props.deletePost(this.props.match.params.id);
+    this.props.deletePost(this.props.match.params.id, true);
+    this.props.history.push({pathname: '/admin-dashboard'});
   }
 
   render() {
@@ -98,7 +99,7 @@ const mapDispatchToProps = dispatch => {
   return {
       fetchPost: (id) => dispatch(fetchPost(id)),
       editPost: (id, title, text) => dispatch(editPost(id, title, text)),
-      deletePost: (id) => dispatch(deletePost(id))
+      deletePost: (id, isPermanent) => dispatch(deletePost(id, isPermanent))
   }
 }
 

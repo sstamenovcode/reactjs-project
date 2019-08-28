@@ -1,4 +1,4 @@
-import { FETCH_POSTS, FETCH_POST, DELETE_POST } from '../actions/types';
+import { FETCH_POSTS, FETCH_POST, UPDATE_POST, DELETE_POST } from '../actions/types';
 import { updateObject } from '../utility';
 
 const initialState = {
@@ -11,6 +11,8 @@ const reducer = (state = initialState, action) => {
         case FETCH_POSTS:
             return updateObject(state, { posts: action.payload });
         case FETCH_POST:
+            return updateObject(state, { post: action.payload });
+        case UPDATE_POST:
             return updateObject(state, { post: action.payload });
         case DELETE_POST:
             return updateObject(state, { post: action.payload });

@@ -1,85 +1,73 @@
-import FireStoreParser from 'firestore-parser';
-import { FETCH_POSTS, FETCH_POST, DELETE_POST } from './types';
-import firestoreConfig from '../firestoreConfig';
-import { parseFirestoreData } from '../utility';
+import { FETCH_POSTS, FETCH_POST, UPDATE_POST, DELETE_POST } from './types';
+import db from '../firestoreInit';
 
 export const fetchPosts = () => {
   return (dispatch) => {
-    const doc = 'articles';
-    const url = `https://firestore.googleapis.com/v1beta1/projects/${firestoreConfig.projectId}/databases/(default)/documents/${doc}?key=${firestoreConfig.apiKey}`;
-
-    fetch(url)
-        .then(response => response.json())
-        .then(json => FireStoreParser(json))
-        .then(json => {
-          const docs = parseFirestoreData(json.documents);
-          dispatch({ 
-            type: FETCH_POSTS,
-            payload: docs
-          })
+    db.collection('articles')
+      .get()
+      .then(querySnapshot => {
+        const docs = [];
+        querySnapshot.forEach(doc => {
+            const data = doc.data();
+            const id = doc.id;
+            docs.push({ id, ...data });
         })
-        .catch(function(error) {
-          console.log(error);
-        });
+        dispatch({ 
+          type: FETCH_POSTS,
+          payload: docs
+        })
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
   }
 }
 
 export const fetchPost = (id) => {
   return (dispatch) => {
-    const doc = 'articles';
-    const url = `https://firestore.googleapis.com/v1beta1/projects/${firestoreConfig.projectId}/databases/(default)/documents/${doc}/${id}?key=${firestoreConfig.apiKey}`;
-
-    fetch(url)
-        .then(response => response.json())
-        .then(json => FireStoreParser(json))
-        .then(doc => {
-          dispatch({ 
-            type: FETCH_POST,
-            payload: doc.fields
-          })
+    db.collection('articles')
+      .doc(id)
+      .get()
+      .then(docRef => {
+        dispatch({ 
+          type: FETCH_POST,
+          payload: docRef.data()
         })
-        .catch(function(error) {
-          console.log(error);
-        });
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
   }
 }
 
 export const editPost = (id, title, text) => {
   return (dispatch) => {
-    const doc = 'articles';
-    const url = `https://firestore.googleapis.com/v1beta1/projects/${firestoreConfig.projectId}/databases/(default)/documents/${doc}/${id}?key=${firestoreConfig.apiKey}`;
-
-    fetch(url, { 
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        name: id,
-        fields: {
-          id, title, text
-        }
+    const post = { id, title, text };
+    db.collection('articles')
+    .doc(id)
+    .set(post)
+    .then(() => {
+      dispatch({ 
+        type: UPDATE_POST,
+        payload: post
       })
-    })
-        .then(response => response.json())
-        .then(json => FireStoreParser(json))
-        .then(doc => {
-          dispatch({ 
-            type: FETCH_POST,
-            payload: doc.fields
-          })
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
+    });
   }
 }
 
-export const deletePost = (id) => {
+export const deletePost = (id, isPermanent) => {
   return (dispatch) => {
-        dispatch({ 
-          type: DELETE_POST,
-          payload: {}
-        })
+    if (isPermanent) {
+      db.collection('articles')
+        .doc(id)
+        .delete()
+        .then(() => {
+            return id;
+        });
+    }
+    dispatch({ 
+      type: DELETE_POST,
+      payload: {}
+    })
   }
 }
