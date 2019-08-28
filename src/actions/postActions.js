@@ -57,10 +57,10 @@ export const fetchPost = (id) => {
 
 export const editPost = (id, title, text) => {
   return (dispatch) => {
-    const post = { id, title, text };
+    const post = { title, text };
     db.collection('articles')
     .doc(id)
-    .set(post)
+    .set({...post, timestamp: firebase.firestore.FieldValue.serverTimestamp()})
     .then(() => {
       dispatch({ 
         type: UPDATE_POST,
