@@ -112,7 +112,6 @@ const getUserData = () => {
 
 const logoutUser = () => {
   return (dispatch) => {
-    debugger
     localStorage.removeItem('token');
     localStorage.removeItem('expiresIn');
     dispatch({
