@@ -15,6 +15,11 @@
     background: #80f573;
   }
 
+  .add-post {
+    margin-top: 20px;
+    border-top: 1px solid green;
+  }
+
   hr {
     border-top: 1px solid #2b7b2d;
   }
@@ -35,6 +40,11 @@
 
     & > div {
       flex: 50%;
+    }
+
+    .add-post {
+      margin-top: 0;
+      border-top: none;
     }
   }
 }
