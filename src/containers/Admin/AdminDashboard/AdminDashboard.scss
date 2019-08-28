@@ -8,11 +8,11 @@
   }
 
   .post:nth-child(even) {
-    background: #ddd;
+    background: #ffeab9;
   }
 
   .post:hover {
-    background: #7cd073;
+    background: #80f573;
   }
 
   hr {
@@ -30,6 +30,11 @@
 
 @media only screen and (min-width: 768px) {
   .admin-dashboard-container {
-      width: 50vw;
+    display: flex;
+    width: 80vw;
+
+    & > div {
+      flex: 50%;
+    }
   }
 }

@@ -123,7 +123,7 @@ const logoutUser = () => {
 const checkAuthTimeout = (expirationTime, dispatch) => {
   setTimeout(() => {
     logoutUser()(dispatch);
-  }, expirationTime * 950);
+  }, expirationTime * 975);
 }
 
 export {

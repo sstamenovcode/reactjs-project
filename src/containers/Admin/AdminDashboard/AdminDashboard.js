@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchPosts } from '../../../actions/postActions';
 import { Link } from 'react-router-dom';
 import { truncate } from '../../../utility';
+import AdminAddClub from '../AdminAddClub/AdminAddClub';
 
 import './AdminDashboard.scss';
 
@@ -24,8 +25,14 @@ class AdminDashboard extends Component {
 
     return (
       <div className="admin-dashboard-container">
-        <h1 className="heading">Club information</h1>
-        {postItems}
+        <div className="edit-delete-post">
+          <h1 className="heading">Edit / Delete Club</h1>
+          {postItems}
+        </div>
+        <div className="add-post">
+          <h1 className="heading">Add club</h1>
+          <AdminAddClub />
+        </div>
       </div>
     )
   }

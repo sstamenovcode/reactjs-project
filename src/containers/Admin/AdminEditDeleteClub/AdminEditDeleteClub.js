@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { fetchPost, editPost, deletePost } from '../../../actions/postActions';
 import Input from '../../../components/UI/Input/Input';
 
-import './AdminEditClub.scss';
+import './AdminEditDeleteClub.scss';
 
-class AdminEditClub extends Component {
+class AdminEditDeleteClub extends Component {
   state = {
     title: '',
     text: ''
@@ -103,4 +103,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AdminEditClub));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AdminEditDeleteClub));

@@ -1,13 +1,14 @@
-import { FETCH_POSTS, FETCH_POST, UPDATE_POST, DELETE_POST } from './types';
+import firebase from 'firebase';
+import { FETCH_POSTS, ADD_POST, FETCH_POST, UPDATE_POST, DELETE_POST } from './types';
 import db from '../firestoreInit';
 
 export const fetchPosts = () => {
   return (dispatch) => {
     db.collection('articles')
-      .get()
-      .then(querySnapshot => {
+      .orderBy('timestamp', 'desc')
+      .onSnapshot(snapshot => {      
         const docs = [];
-        querySnapshot.forEach(doc => {
+        snapshot.forEach(doc => {
             const data = doc.data();
             const id = doc.id;
             docs.push({ id, ...data });
@@ -15,7 +16,21 @@ export const fetchPosts = () => {
         dispatch({ 
           type: FETCH_POSTS,
           payload: docs
-        })
+        })                
+      });
+  }
+}
+
+export const createPost = (title, text) => {
+  return (dispatch) => {
+    const post = { title, text };
+    db.collection('articles')
+      .add({...post, timestamp: firebase.firestore.FieldValue.serverTimestamp()})
+      .then(docRef => {
+          dispatch({ 
+            type: ADD_POST,
+            payload: { id: docRef.id, ...post }
+          })
       })
       .catch(function(error) {
         console.log(error);
@@ -51,9 +66,13 @@ export const editPost = (id, title, text) => {
         type: UPDATE_POST,
         payload: post
       })
+    })
+    .catch(function(error) {
+      console.log(error);
     });
   }
 }
+
 
 export const deletePost = (id, isPermanent) => {
   return (dispatch) => {
@@ -63,6 +82,9 @@ export const deletePost = (id, isPermanent) => {
         .delete()
         .then(() => {
             return id;
+        })
+        .catch(function(error) {
+          console.log(error);
         });
     }
     dispatch({ 
