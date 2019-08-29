@@ -2,8 +2,6 @@ import { REGISTER_USER, LOGIN_USER, GET_USER, LOGOUT_USER } from '../actions/typ
 import { updateObject } from '../utility';
 
 const initialState = {
-    idToken: null,
-    expiresIn: null,
     email: null
 };
 
@@ -16,9 +14,7 @@ const reducer = (state = initialState, action) => {
         email: action.payload.email
       })
     case LOGIN_USER: 
-      return updateObject(state, { 
-        idToken: action.payload.idToken, 
-        expiresIn: action.payload.expiresIn,
+      return updateObject(state, {
         email: action.payload.email
       })
     case GET_USER: 
@@ -26,9 +22,7 @@ const reducer = (state = initialState, action) => {
         email: action.payload.email
       })
     case LOGOUT_USER: 
-      return updateObject(state, { 
-        idToken: null, 
-        expiresIn: null,
+      return updateObject(state, {
         email: null
       })
     default:

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import ReduxToastr from 'react-redux-toastr';
+// import { Beforeunload } from 'react-beforeunload';
 import Toolbar from '../Toolbar/Toolbar';
 import Footer from '../../components/Footer/Footer';
 import Home from '../../components/Home/Home';
@@ -16,14 +17,14 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 import Logout from '../Logout/Logout';
 import NotFound from '../../components/NotFound/NotFound';
-import { getUserData } from '../../actions/authActions';
+import { getUserData, logoutUser } from '../../actions/authActions';
 import { isUserAuth } from '../../utility';
 
 import './App.scss';
 
 export class App extends Component {
   componentDidMount() {
-    return isUserAuth() ? this.props.getUserDataAction() : null;
+    this.props.getUserDataAction();
   }
 
   render() {
@@ -62,8 +63,9 @@ export class App extends Component {
     return (
       <Router>
         <div className="App">
+          {/* <Beforeunload onBeforeunload={() => this.props.onLogout()} /> */}
           <div className="content">
-            <Toolbar isAuth={this.props.isAuthenticated} />
+            <Toolbar isAuth={this.props.isAuth} />
             {routes}
           </div>
           <Footer />
@@ -84,12 +86,13 @@ export class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.email !== null
+  isAuth: state.auth.email
 })
 
 const mapDispatchToProps = dispatch => {
   return {
-    getUserDataAction: () => dispatch(getUserData())
+    getUserDataAction: () => dispatch(getUserData()),
+    // onLogout: () => dispatch(logoutUser())
   }
 }
 

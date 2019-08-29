@@ -104,6 +104,7 @@ const getUserData = () => {
           });
         })
         .catch(error => {
+          alert(5);
           console.log(error);
         });
     }

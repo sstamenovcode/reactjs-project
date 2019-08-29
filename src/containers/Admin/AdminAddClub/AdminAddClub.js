@@ -1,26 +1,50 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { EditorState, convertToRaw, ContentState } from 'draft-js';
+import { Editor } from 'react-draft-wysiwyg';
+import draftToHtml from 'draftjs-to-html';
+import htmlToDraft from 'html-to-draftjs';
+import draftToMarkdown from 'draftjs-to-markdown';
 import { createPost } from '../../../actions/postActions';
 import Input from '../../../components/UI/Input/Input';
 
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import './AdminAddClub.scss';
 
 class AdminAddClub extends Component {
   state = {
     title: '',
-    text: ''
-  }
+    text: '',
+    editorState: EditorState.createEmpty()
+  };
 
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value
     });
-  }
+  };
+
+  onEditorStateChange = (editorState) => {
+    this.setState({
+      editorState
+    });
+  };
 
   handleSubmit = (e) => {
     e.preventDefault();
+    
+    const html = '<p>Hey this <strong>editor</strong> rocks 😀</p>';
+    const contentBlock = htmlToDraft(html);
+
+    console.log(contentBlock.contentBlocks[0].text);
+
     if (this.checkValidity()) {
-      this.props.createPost(this.state.title, this.state.text);
+      const rawContentState = convertToRaw(this.state.editorState.getCurrentContent());
+      const markup = draftToMarkdown(rawContentState, null, null, null);
+
+      console.log(markup);
+
+      this.props.createPost(this.state.title, draftToHtml(convertToRaw(this.state.editorState.getCurrentContent())));
       this.setState({
         text: '',
         title: ''
@@ -28,17 +52,19 @@ class AdminAddClub extends Component {
     } else {
       alert('The title, the text, or both should consist of more letters.');
     }
-  }
+  };
 
   checkValidity = (e) => {
-    if (this.state.title.length < 3 || this.state.text.length < 150) {
+    if (this.state.title.length < 3 || this.state.editorState.getCurrentContent() < 150) {
       return false;
     }
 
     return true;
-  }
+  };
 
   render() {
+    const { editorState } = this.state;
+
     return (
       <form className="add-club-form" onSubmit={this.handleSubmit}>
         <Input
@@ -51,7 +77,18 @@ class AdminAddClub extends Component {
           onChange={this.handleChange} 
           id="title"
         />
-        <Input
+        <Editor
+          editorState={editorState}
+          toolbarClassName="toolbarClassName"
+          wrapperClassName="wrapperClassName"
+          editorClassName="editorClassName"
+          onEditorStateChange={this.onEditorStateChange}
+        />
+        <textarea
+          disabled
+          value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}
+        />
+        {/* <Input
           proptype="textarea"
           label="Text:"
           labelfor="text"
@@ -59,7 +96,7 @@ class AdminAddClub extends Component {
           value={this.state.text}
           onChange={this.handleChange} 
           id="text"
-        />
+        /> */}
         <div className="post-actions-container">
           <Input
             proptype="input"

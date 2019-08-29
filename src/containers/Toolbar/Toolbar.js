@@ -25,10 +25,10 @@ class Toolbar extends Component {
                     </NavLink>
                     <nav>
                         <ul className="desktop-menu">
-                            {this.props.email ? <NavLink to="/user-profile">
+                            {this.props.isAuth ? <NavLink to="/user-profile">
                                 <li>{this.props.email}</li>
                             </NavLink> : null}
-                            {this.props.email ? <NavLink to="/admin-dashboard">
+                            {this.props.isAuth ? <NavLink to="/admin-dashboard">
                                 <li>Dashboard</li>
                             </NavLink> : null}
                             <NavLink to="/clubs">
