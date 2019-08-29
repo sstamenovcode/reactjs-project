@@ -2,6 +2,16 @@ import { REGISTER_USER } from './types';
 import { LOGIN_USER, GET_USER, LOGOUT_USER } from './types';
 import { toastr } from 'react-redux-toastr';
 
+const logoutUser = () => {
+  return (dispatch) => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('expiresIn');
+    dispatch({
+      type: LOGOUT_USER
+    });
+  }
+};
+
 const registerUser = (email, password) => {
   return (dispatch) => {
     const authData = {
@@ -98,26 +108,20 @@ const getUserData = () => {
       )
         .then(res => res.json())
         .then(data => {
+          if (data.error) {
+            logoutUser()(dispatch);
+            return false;
+          }
+
           dispatch({
             type: GET_USER,
             payload: data.users[0]
           });
         })
         .catch(error => {
-          alert(5);
           console.log(error);
         });
     }
-  }
-};
-
-const logoutUser = () => {
-  return (dispatch) => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('expiresIn');
-    dispatch({
-      type: LOGOUT_USER
-    });
   }
 };
 

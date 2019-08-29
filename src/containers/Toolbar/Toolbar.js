@@ -25,10 +25,10 @@ class Toolbar extends Component {
                     </NavLink>
                     <nav>
                         <ul className="desktop-menu">
-                            {this.props.isAuth ? <NavLink to="/user-profile">
+                            {this.props.email ? <NavLink to="/user-profile">
                                 <li>{this.props.email}</li>
                             </NavLink> : null}
-                            {this.props.isAuth ? <NavLink to="/admin-dashboard">
+                            {this.props.email ? <NavLink to="/admin-dashboard">
                                 <li>Dashboard</li>
                             </NavLink> : null}
                             <NavLink to="/clubs">
@@ -40,13 +40,13 @@ class Toolbar extends Component {
                             <NavLink to="/contacts">
                                 <li>Contacts</li>
                             </NavLink>
-                            {!this.props.isAuth ? <NavLink to="/register">
+                            {!this.props.email ? <NavLink to="/register">
                                 <li>Register</li>
                             </NavLink> : null}
-                            {!this.props.isAuth ? <NavLink to="/login">
+                            {!this.props.email ? <NavLink to="/login">
                                 <li>Login</li>
                             </NavLink> : null}
-                            {this.props.isAuth ? <NavLink to="/logout">
+                            {this.props.email ? <NavLink to="/logout">
                                 <li>Logout</li>
                             </NavLink> : null}
                         </ul>
@@ -57,7 +57,7 @@ class Toolbar extends Component {
                         </div>
                         {this.state.isSideNavOpen ? 
                             (<SideNav
-                                isAuth={this.props.isAuth}
+                                isAuth={this.props.email ? true : false}
                                 isOpen={this.state.isSideNavOpen}
                                 unmountSideNav={this.toggleSideNav} 
                             />) : null}
