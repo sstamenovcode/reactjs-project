@@ -1,5 +1,5 @@
 import { REGISTER_USER } from './types';
-import { LOGIN_USER, GET_USER, LOGOUT_USER } from './types';
+import { LOGIN_USER, GET_USER, GET_USERS, LOGOUT_USER } from './types';
 import { toastr } from 'react-redux-toastr';
 
 const logoutUser = () => {
@@ -125,6 +125,29 @@ const getUserData = () => {
   }
 };
 
+const getAllUsers = () => {
+  return (dispatch) => {
+    fetch('https://us-central1-test-72840.cloudfunctions.net/getAllUsers',
+    { 
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({})
+    })
+      .then(res => res.json())
+      .then(data => {
+        // dispatch({
+        //   type: GET_USERS,
+        //   payload: data.users
+        // });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+}
+
 const checkAuthTimeout = (expirationTime, dispatch) => {
   setTimeout(() => {
     logoutUser()(dispatch);
@@ -135,6 +158,7 @@ export {
   registerUser,
   loginUser,
   getUserData,
+  getAllUsers,
   logoutUser,
   checkAuthTimeout
 };

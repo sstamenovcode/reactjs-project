@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { listAllUsers } from '../../actions/postActions';
 import Input from '../../../components/UI/Input/Input';
+import { getAllUsers } from '../../../actions/authActions';
 
 import './AdminEditRoles.scss';
 
@@ -11,7 +11,7 @@ class AdminEditRoles extends Component {
   };
 
   componentDidMount() {
-    this.fetchUsers();
+    this.props.getUsers();
   }
 
   handleChange = (e) => {
@@ -50,14 +50,10 @@ class AdminEditRoles extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  posts: state.posts.posts
-})
-
 const mapDispatchToProps = dispatch => {
   return {
-    fetchUsers: () => dispatch(listAllUsers())
+    getUsers: () => dispatch(getAllUsers())
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AdminEditRoles);
+export default connect(null, mapDispatchToProps)(AdminEditRoles);

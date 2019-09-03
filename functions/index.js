@@ -74,18 +74,17 @@ exports.getAllUsers = functions.https.onCall((data, context) => {
 
     return admin
         .auth()
-        .listUsers(1000, nextPageToken)
-        .then(function(listUsersResult) {
-                listUsersResult.users.forEach(function(userRecord) {
-                console.log('user', userRecord.toJSON());
+        .listUsers()
+        .then(listUsersResult => {
+            let allUsers = [];
+
+            listUsersResult.users.forEach(userRecord => {
+                allUsers.push(userRecord.toJSON());
             });
 
-            if (listUsersResult.pageToken) {
-                // List next batch of users.
-                listAllUsers(listUsersResult.pageToken);
-            }
+            return allUsers;
         })
-        .catch(function(error) {
+        .catch(error => {
             console.log('Error listing users:', error);
         });
 });

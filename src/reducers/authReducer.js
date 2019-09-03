@@ -1,8 +1,9 @@
-import { REGISTER_USER, LOGIN_USER, GET_USER, LOGOUT_USER } from '../actions/types';
+import { REGISTER_USER, LOGIN_USER, GET_USER, GET_USERS, LOGOUT_USER } from '../actions/types';
 import { updateObject } from '../utility';
 
 const initialState = {
-    email: null
+    email: null,
+    users: null
 };
 
 const reducer = (state = initialState, action) => {
@@ -18,6 +19,10 @@ const reducer = (state = initialState, action) => {
     case GET_USER: 
       return updateObject(state, { 
         email: action.payload.email
+      })
+    case GET_USERS: 
+      return updateObject(state, { 
+        users: action.payload.users
       })
     case LOGOUT_USER: 
       return updateObject(state, {
