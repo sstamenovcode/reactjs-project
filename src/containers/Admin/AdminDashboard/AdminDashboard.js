@@ -4,6 +4,7 @@ import { fetchPosts } from '../../../actions/postActions';
 import { Link } from 'react-router-dom';
 import { truncate } from '../../../utility';
 import AdminAddClub from '../AdminAddClub/AdminAddClub';
+import AdminEditRoles from '../AdminEditRoles/AdminEditRoles';
 
 import './AdminDashboard.scss';
 
@@ -32,6 +33,10 @@ class AdminDashboard extends Component {
         <div className="add-post">
           <h1 className="heading">Add club</h1>
           <AdminAddClub />
+        </div>
+        <div className="set-admin-role">
+          <h1 className="heading">Set admin</h1>
+          <AdminEditRoles />
         </div>
       </div>
     )

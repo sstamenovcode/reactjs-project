@@ -64,3 +64,28 @@ exports.addAdminRole = functions.https.onCall((data, context) => {
             return error;
         });
 });
+
+exports.getAllUsers = functions.https.onCall((data, context) => {
+    // check if user is admin (true "admin" custom claim), return error if not
+    // const isAdmin = context.auth.token.admin === true;
+    // if (!isAdmin) {
+    //     return { error: 'Unauthorized.' };
+    // }
+
+    return admin
+        .auth()
+        .listUsers(1000, nextPageToken)
+        .then(function(listUsersResult) {
+                listUsersResult.users.forEach(function(userRecord) {
+                console.log('user', userRecord.toJSON());
+            });
+
+            if (listUsersResult.pageToken) {
+                // List next batch of users.
+                listAllUsers(listUsersResult.pageToken);
+            }
+        })
+        .catch(function(error) {
+            console.log('Error listing users:', error);
+        });
+});
