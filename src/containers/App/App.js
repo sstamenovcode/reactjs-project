@@ -17,8 +17,7 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 import Logout from '../Logout/Logout';
 import NotFound from '../../components/NotFound/NotFound';
-import { getUserData, logoutUser } from '../../actions/authActions';
-import { isUserAuth } from '../../utility';
+import { getUserData } from '../../actions/authActions';
 
 import './App.scss';
 
@@ -30,7 +29,7 @@ export class App extends Component {
   render() {
     let routes = null;
 
-    if (isUserAuth()) {
+    if (this.props.isAuth) {
       routes = (
         <Switch>
           <Route path="/" exact component={Home} />
@@ -63,7 +62,6 @@ export class App extends Component {
     return (
       <Router>
         <div className="App">
-          {/* <Beforeunload onBeforeunload={() => this.props.onLogout()} /> */}
           <div className="content">
             <Toolbar isAuth={this.props.isAuth} />
             {routes}
@@ -91,8 +89,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    getUserDataAction: () => dispatch(getUserData()),
-    // onLogout: () => dispatch(logoutUser())
+    getUserDataAction: () => dispatch(getUserData())
   }
 }
 

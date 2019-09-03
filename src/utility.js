@@ -1,11 +1,3 @@
-const isUserAuth = () => {
-  if (localStorage.getItem('token')) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
 const updateObject = (mainObject, newDataObject) => {
   return {
     ...mainObject,
@@ -34,7 +26,6 @@ const truncate = (text) => {
 };
 
 export {
-  isUserAuth,
   updateObject,
   parseFirestoreData,
   validateEmail,
