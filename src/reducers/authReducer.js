@@ -22,7 +22,7 @@ const reducer = (state = initialState, action) => {
       })
     case GET_USERS: 
       return updateObject(state, { 
-        users: action.payload.users
+        users: action.payload
       })
     case LOGOUT_USER: 
       return updateObject(state, {

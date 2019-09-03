@@ -133,14 +133,16 @@ const getAllUsers = () => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({})
+      body: JSON.stringify({
+        data: {}
+      })
     })
       .then(res => res.json())
       .then(data => {
-        // dispatch({
-        //   type: GET_USERS,
-        //   payload: data.users
-        // });
+        dispatch({
+          type: GET_USERS,
+          payload: data.result
+        });
       })
       .catch(error => {
         console.log(error);

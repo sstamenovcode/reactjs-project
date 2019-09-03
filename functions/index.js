@@ -19,7 +19,6 @@ let transporter = nodemailer.createTransport(
 
 exports.sendMail = functions.https.onRequest((req, res) => {
     cors(req, res, () => {
-      
         // getting 'from' email by query string
         const from = req.query.from;
         const message = req.query.message;
@@ -33,7 +32,7 @@ exports.sendMail = functions.https.onRequest((req, res) => {
   
         // returning result
         return transporter.sendMail(mailOptions, (error, info) => {
-            if(error){
+            if (error){
                 return res.send(error.toString());
             }
             return res.send('Sended');
@@ -48,7 +47,8 @@ exports.addAdminRole = functions.https.onCall((data, context) => {
     }
 
     // get user and add custom claim (admin)
-    return admin.auth()
+    return admin
+        .auth()
         .getUserByEmail(data.email)
         .then(user => {
             return admin.auth().setCustomUserClaims(user.uid, {
@@ -66,12 +66,6 @@ exports.addAdminRole = functions.https.onCall((data, context) => {
 });
 
 exports.getAllUsers = functions.https.onCall((data, context) => {
-    // check if user is admin (true "admin" custom claim), return error if not
-    // const isAdmin = context.auth.token.admin === true;
-    // if (!isAdmin) {
-    //     return { error: 'Unauthorized.' };
-    // }
-
     return admin
         .auth()
         .listUsers()
