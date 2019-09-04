@@ -1,6 +1,9 @@
+import { createBrowserHistory } from 'history';
 import { REGISTER_USER } from './types';
 import { LOGIN_USER, GET_USER, GET_USERS, LOGOUT_USER } from './types';
 import { toastr } from 'react-redux-toastr';
+
+const browserHistory = createBrowserHistory();
 
 const logoutUser = () => {
   return (dispatch) => {
@@ -9,6 +12,7 @@ const logoutUser = () => {
     dispatch({
       type: LOGOUT_USER
     });
+    browserHistory.push('/not-found');
   }
 };
 

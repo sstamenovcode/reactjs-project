@@ -24,7 +24,7 @@ const reducer = (state = initialState, action) => {
       return updateObject(state, { 
         users: action.payload
       })
-    case LOGOUT_USER: 
+    case LOGOUT_USER:
       return updateObject(state, {
         email: null
       })
