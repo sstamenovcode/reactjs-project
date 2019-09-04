@@ -6,13 +6,14 @@
     .text-container {
         padding: 10px;
         border: 1px solid #177707;
-        border-radius: 10px;
+        border-radius: 5px;
 
         .football-ball {
             display: block;
-            margin: 0 auto;
             width: 30%;
             height: auto;
+            margin: 0 auto;
+            padding: 20px 0;
         }
     }
 

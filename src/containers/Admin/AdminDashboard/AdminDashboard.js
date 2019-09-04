@@ -31,11 +31,9 @@ class AdminDashboard extends Component {
           {postItems}
         </div>
         <div className="add-post">
-          <h1 className="heading">Add club</h1>
           <AdminAddClub />
         </div>
         <div className="set-admin-role">
-          <h1 className="heading">Set admin</h1>
           <AdminEditRoles />
         </div>
       </div>

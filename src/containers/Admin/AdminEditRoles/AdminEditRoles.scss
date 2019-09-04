@@ -1,6 +1,44 @@
 .admin-roles-container {
   label {
+    display: block;
+    margin: 10px 0;
     font-weight: bold;
+  }
+
+  input {
+    display: block;
+    width: 100%;
+    margin: 10px 0 0 0;
+    padding: 20px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+  }
+
+  #remove-admin-btn {
+    color: #fff;
+    font-size: 1.1rem;
+    background: red;
+    cursor: pointer;
+
+    &:hover {
+      background: #ce0000;
+    }
+  }
+
+  .react-autosuggest__suggestions-list {
+    list-style-type: none;
+
+    li {
+      display: block;
+      padding: 10px;
+      background: #eee;
+      border: 1px solid #bbb;
+      cursor: pointer;
+      
+      &:hover {
+        background: #ffeab9;
+      }
+    }
   }
 }
 

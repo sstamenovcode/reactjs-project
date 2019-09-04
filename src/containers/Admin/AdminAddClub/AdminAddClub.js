@@ -66,45 +66,48 @@ class AdminAddClub extends Component {
     const { editorState } = this.state;
 
     return (
-      <form className="add-club-form" onSubmit={this.handleSubmit}>
-        <Input
-          proptype="input"
-          type="text"
-          label="Title:"
-          labelfor="title"
-          name="title" 
-          value={this.state.title || ''}
-          onChange={this.handleChange} 
-          id="title"
-        />
-        <Editor
-          editorState={editorState}
-          toolbarClassName="toolbarClassName"
-          wrapperClassName="wrapperClassName"
-          editorClassName="editorClassName"
-          onEditorStateChange={this.onEditorStateChange}
-        />
-        <textarea
-          disabled
-          value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}
-        />
-        {/* <Input
-          proptype="textarea"
-          label="Text:"
-          labelfor="text"
-          name="text"
-          value={this.state.text}
-          onChange={this.handleChange} 
-          id="text"
-        /> */}
-        <div className="post-actions-container">
+      <React.Fragment>
+        <h1 className="heading">Add club</h1>
+        <form className="add-club-form" onSubmit={this.handleSubmit}>
           <Input
             proptype="input"
-            type="submit" 
-            value="Add Club" 
+            type="text"
+            label="Title:"
+            labelfor="title"
+            name="title" 
+            value={this.state.title || ''}
+            onChange={this.handleChange} 
+            id="title"
           />
-        </div>
-      </form>
+          <Editor
+            editorState={editorState}
+            toolbarClassName="toolbarClassName"
+            wrapperClassName="wrapperClassName"
+            editorClassName="editorClassName"
+            onEditorStateChange={this.onEditorStateChange}
+          />
+          <textarea
+            disabled
+            value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}
+          />
+          {/* <Input
+            proptype="textarea"
+            label="Text:"
+            labelfor="text"
+            name="text"
+            value={this.state.text}
+            onChange={this.handleChange} 
+            id="text"
+          /> */}
+          <div className="post-actions-container">
+            <Input
+              proptype="input"
+              type="submit" 
+              value="Add Club" 
+            />
+          </div>
+        </form>
+      </React.Fragment>
     )
   }
 }
