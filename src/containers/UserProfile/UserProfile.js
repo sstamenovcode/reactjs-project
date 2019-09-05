@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import firebase from 'firebase';
 import Input from '../../components/UI/Input/Input';
 import { validateEmail } from '../../utility';
 
@@ -7,15 +7,9 @@ import './UserProfile.scss';
 
 class UserProfile extends Component {
   state = {
-    email: '',
+    email: firebase.auth().currentUser.email,
     isEmailValid: null,
     isFormDirty: false
-  }
-
-  componentDidMount() {
-    this.setState({
-      email: this.props.email
-    });
   }
 
   handleChange = (e) => {
@@ -88,8 +82,5 @@ class UserProfile extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  email: state.auth.email
-})
 
-export default connect(mapStateToProps, null)(UserProfile);
+export default UserProfile;

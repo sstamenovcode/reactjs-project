@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { loginUser } from '../../actions/authActions';
+import firebase from 'firebase';
 import Input from '../../components/UI/Input/Input';
 
 import './Login.scss';
@@ -19,8 +18,15 @@ class Register extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.loginUserAction(this.state.email, this.state.password);
-    this.props.history.push({pathname: '/'});
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(this.state.email, this.state.password)
+      .then(() => {
+        this.props.history.push({pathname: '/'});
+      })
+      .catch(function(error) {
+          console.log(error.message);
+      });
   }
 
   render() {
@@ -63,10 +69,4 @@ class Register extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    loginUserAction: (email, password) => dispatch(loginUser(email, password))
-  }
-}
-
-export default connect(null, mapDispatchToProps)(Register);
+export default Register;

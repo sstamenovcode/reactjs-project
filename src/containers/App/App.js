@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { connect } from 'react-redux';
 import ReduxToastr from 'react-redux-toastr';
-// import { Beforeunload } from 'react-beforeunload';
+import firebase from 'firebase';
 import Toolbar from '../Toolbar/Toolbar';
 import Footer from '../../components/Footer/Footer';
 import Home from '../../components/Home/Home';
@@ -17,19 +16,32 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 import Logout from '../Logout/Logout';
 import NotFound from '../../components/NotFound/NotFound';
-import { getUserData } from '../../actions/authActions';
 
 import './App.scss';
 
 export class App extends Component {
+  state = {
+    isAuth: null
+  }
+
   componentDidMount() {
-    this.props.getUserDataAction();
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.setState({
+          isAuth: true
+        });
+      } else {
+        this.setState({
+          isAuth: false
+        });
+      }
+    });
   }
 
   render() {
     let routes = null;
 
-    if (this.props.isAuth) {
+    if (this.state.isAuth) {
       routes = (
         <Switch>
           <Route path="/" exact component={Home} />
@@ -63,7 +75,7 @@ export class App extends Component {
       <Router>
         <div className="App">
           <div className="content">
-            <Toolbar isAuth={this.props.isAuth} />
+            <Toolbar isAuth={this.state.isAuth} />
             {routes}
           </div>
           <Footer />
@@ -83,14 +95,4 @@ export class App extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  isAuth: state.auth.email
-})
-
-const mapDispatchToProps = dispatch => {
-  return {
-    getUserDataAction: () => dispatch(getUserData())
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

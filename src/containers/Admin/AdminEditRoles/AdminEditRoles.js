@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Autosuggest from 'react-autosuggest';
 import Input from '../../../components/UI/Input/Input';
-import { getAllUsers } from '../../../actions/authActions';
+import { getAllUsers, addAdminRole, removeAdminRole } from '../../../actions/authActions';
 
 import './AdminEditRoles.scss';
 
@@ -24,7 +24,7 @@ class AdminEditRoles extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state.value);
+    this.props.addAdmin(this.state.value, localStorage.getItem('token'));
     this.setState({
       value: ''
     });
@@ -32,7 +32,7 @@ class AdminEditRoles extends Component {
 
   removeAdmin = (e) => {
     e.preventDefault();
-    console.log(this.state.value);
+    this.props.removeAdmin(this.state.value, localStorage.getItem('token'));
     this.setState({
       value: ''
     });
@@ -130,7 +130,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    getUsers: () => dispatch(getAllUsers())
+    getUsers: () => dispatch(getAllUsers()),
+    addAdmin: (email, token) => dispatch(addAdminRole(email, token)),
+    removeAdmin: (email, token) => dispatch(removeAdminRole(email, token))
   }
 }
 

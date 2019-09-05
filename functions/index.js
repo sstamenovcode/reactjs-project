@@ -40,29 +40,88 @@ exports.sendMail = functions.https.onRequest((req, res) => {
     });    
 });
 
-exports.addAdminRole = functions.https.onCall((data, context) => {
-    // check if request is made by admin
-    if (context.auth.token.admin !== true) {
-        return { error: 'Only admins can add other admins.' };
-    }
+exports.addAdminRole = functions.https.onCall(async (data, context) => {
+    const uid = await admin
+                        .auth()
+                        .verifyIdToken(data.token)
+                        .then(decodedToken => {
+                            return decodedToken.uid;
+                        }).catch(error => {
+                            return error;
+                        });
 
-    // get user and add custom claim (admin)
-    return admin
-        .auth()
-        .getUserByEmail(data.email)
-        .then(user => {
-            return admin.auth().setCustomUserClaims(user.uid, {
-                admin: true
+    const isAdmin = await admin
+                        .auth()
+                        .getUser(uid)
+                        .then((userRecord) => {
+                            // check if the request is made by admin
+                            if (userRecord.customClaims && userRecord.customClaims.admin) {
+                                return true;
+                            } else {
+                                return false;
+                            }
+                        }).catch(error => {
+                            return error;
+                        });
+    if (!isAdmin) {
+        return { error: 'Only admins can add other users as admins.' };
+    } else {
+        return admin
+            .auth()
+            .getUserByEmail(data.email)
+            .then(async user => {
+                await admin.auth().setCustomUserClaims(user.uid, {
+                    admin: true
+                });
+
+                return { ...user, result: { customClaims: true }};
             })
-        })
-        .then(() => {
-            return {
-                message: `Success! ${data.email} has been made an admin.`
-            }
-        })
-        .catch(error => {
-            return error;
-        });
+            .catch(error => {
+                return error;
+            });
+    }
+});
+
+exports.removeAdminRole = functions.https.onCall(async (data, context) => {
+    const uid = await admin
+                        .auth()
+                        .verifyIdToken(data.token)
+                        .then(decodedToken => {
+                            return decodedToken.uid;
+                        }).catch(error => {
+                            return error;
+                        });
+
+    const isAdmin = await admin
+                        .auth()
+                        .getUser(uid)
+                        .then((userRecord) => {
+                            // check if the request is made by admin
+                            if (userRecord.customClaims && userRecord.customClaims.admin) {
+                                return true;
+                            } else {
+                                return false;
+                            }
+                        }).catch(error => {
+                            return error;
+                        });
+    if (!isAdmin) {
+        return { error: 'Only admins can remove other admins.' };
+    } else {
+        return admin
+            .auth()
+            .getUserByEmail(data.email)
+            .then(async user => {
+                await admin.auth().setCustomUserClaims(user.uid, {
+                    admin: false
+                });
+
+                return { ...user, result: { customClaims: false }};
+            })
+            .catch(error => {
+                return error;
+            });
+    }
 });
 
 exports.getAllUsers = functions.https.onCall((data, context) => {

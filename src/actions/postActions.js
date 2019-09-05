@@ -4,7 +4,8 @@ import db from '../firestoreInit';
 
 export const fetchPosts = () => {
   return (dispatch) => {
-    db.collection('articles')
+    db
+      .collection('articles')
       .orderBy('timestamp', 'desc')
       .onSnapshot(snapshot => {      
         const docs = [];
@@ -24,7 +25,8 @@ export const fetchPosts = () => {
 export const createPost = (title, text) => {
   return (dispatch) => {
     const post = { title, text };
-    db.collection('articles')
+    db
+      .collection('articles')
       .add({...post, timestamp: firebase.firestore.FieldValue.serverTimestamp()})
       .then(docRef => {
           dispatch({ 
@@ -40,7 +42,8 @@ export const createPost = (title, text) => {
 
 export const fetchPost = (id) => {
   return (dispatch) => {
-    db.collection('articles')
+    db
+      .collection('articles')
       .doc(id)
       .get()
       .then(docRef => {
@@ -58,18 +61,19 @@ export const fetchPost = (id) => {
 export const editPost = (id, title, text) => {
   return (dispatch) => {
     const post = { title, text };
-    db.collection('articles')
-    .doc(id)
-    .set({...post, timestamp: firebase.firestore.FieldValue.serverTimestamp()})
-    .then(() => {
-      dispatch({ 
-        type: UPDATE_POST,
-        payload: post
+    db
+      .collection('articles')
+      .doc(id)
+      .set({...post, timestamp: firebase.firestore.FieldValue.serverTimestamp()})
+      .then(() => {
+        dispatch({ 
+          type: UPDATE_POST,
+          payload: post
+        })
       })
-    })
-    .catch(function(error) {
-      console.log(error);
-    });
+      .catch(function(error) {
+        console.log(error);
+      });
   }
 }
 
@@ -77,7 +81,8 @@ export const editPost = (id, title, text) => {
 export const deletePost = (id, isPermanent) => {
   return (dispatch) => {
     if (isPermanent) {
-      db.collection('articles')
+      db
+        .collection('articles')
         .doc(id)
         .delete()
         .then(() => {

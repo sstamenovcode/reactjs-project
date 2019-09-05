@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
+import firebase from 'firebase';
 import SideNav from '../SideNav/SideNav';
 
 import './Toolbar.scss';
@@ -25,10 +26,10 @@ class Toolbar extends Component {
                     </NavLink>
                     <nav>
                         <ul className="desktop-menu">
-                            {this.props.email ? <NavLink to="/user-profile">
-                                <li>{this.props.email}</li>
+                            {this.props.isAuth ? <NavLink to="/user-profile">
+                                <li>{firebase.auth().currentUser.email}</li>
                             </NavLink> : null}
-                            {this.props.email ? <NavLink to="/admin-dashboard">
+                            {this.props.isAuth ? <NavLink to="/admin-dashboard">
                                 <li>Dashboard</li>
                             </NavLink> : null}
                             <NavLink to="/clubs">
@@ -40,13 +41,13 @@ class Toolbar extends Component {
                             <NavLink to="/contacts">
                                 <li>Contacts</li>
                             </NavLink>
-                            {!this.props.email ? <NavLink to="/register">
+                            {!this.props.isAuth ? <NavLink to="/register">
                                 <li>Register</li>
                             </NavLink> : null}
-                            {!this.props.email ? <NavLink to="/login">
+                            {!this.props.isAuth ? <NavLink to="/login">
                                 <li>Login</li>
                             </NavLink> : null}
-                            {this.props.email ? <NavLink to="/logout">
+                            {this.props.isAuth ? <NavLink to="/logout">
                                 <li>Logout</li>
                             </NavLink> : null}
                         </ul>

@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import firebase from 'firebase';
 import { Redirect } from 'react-router-dom';
 import { logoutUser } from '../../actions/authActions';
  
 class Logout extends Component {
   componentDidMount() {
-    return this.props.isAuth ? this.props.onLogout() : null;
+    firebase
+      .auth()
+      .signOut()
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   render() {
