@@ -66,7 +66,7 @@ exports.addAdminRole = functions.https.onCall(async (data, context) => {
     if (!isAdmin) {
         return { error: 'Only admins can add other users as admins.' };
     } else {
-        return admin
+        return await admin
             .auth()
             .getUserByEmail(data.email)
             .then(async user => {
@@ -74,7 +74,7 @@ exports.addAdminRole = functions.https.onCall(async (data, context) => {
                     admin: true
                 });
 
-                return { ...user, result: { customClaims: true }};
+                return user;
             })
             .catch(error => {
                 return error;
@@ -116,7 +116,7 @@ exports.removeAdminRole = functions.https.onCall(async (data, context) => {
                     admin: false
                 });
 
-                return { ...user, result: { customClaims: false }};
+                return user;
             })
             .catch(error => {
                 return error;

@@ -36,13 +36,13 @@ class AdminAddClub extends Component {
     const html = '<p>Hey this <strong>editor</strong> rocks 😀</p>';
     const contentBlock = htmlToDraft(html);
 
-    console.log(contentBlock.contentBlocks[0].text);
+    // console.log(contentBlock.contentBlocks[0].text);
 
     if (this.checkValidity()) {
       const rawContentState = convertToRaw(this.state.editorState.getCurrentContent());
       const markup = draftToMarkdown(rawContentState, null, null, null);
 
-      console.log(markup);
+      // console.log(markup);
 
       this.props.createPost(this.state.title, draftToHtml(convertToRaw(this.state.editorState.getCurrentContent())));
       this.setState({

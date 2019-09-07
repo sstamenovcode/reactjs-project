@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import firebase from 'firebase';
 import Autosuggest from 'react-autosuggest';
 import Input from '../../../components/UI/Input/Input';
 import { getAllUsers, addAdminRole, removeAdminRole } from '../../../actions/authActions';
@@ -24,7 +25,7 @@ class AdminEditRoles extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.addAdmin(this.state.value, localStorage.getItem('token'));
+    this.props.addAdmin(this.state.value, firebase.auth().currentUser.ra);
     this.setState({
       value: ''
     });
@@ -32,7 +33,7 @@ class AdminEditRoles extends Component {
 
   removeAdmin = (e) => {
     e.preventDefault();
-    this.props.removeAdmin(this.state.value, localStorage.getItem('token'));
+    this.props.removeAdmin(this.state.value, firebase.auth().currentUser.ra);
     this.setState({
       value: ''
     });

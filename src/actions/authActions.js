@@ -171,7 +171,7 @@ const addAdminRole = (email, token) => {
     })
       .then(res => res.json())
       .then(data => {
-        if (data.error) {
+        if (data.result.error) {
           toastr.error('Error', 'message: There was an error.');
           return;
         }
@@ -201,12 +201,12 @@ const removeAdminRole = (email, token) => {
     })
       .then(res => res.json())
       .then(data => {
-        if (data.error) {
+        if (data.result.error) {
           toastr.error('Error', 'message: There was an error.');
           return;
         }
 
-        toastr.error('Success', `message: Success! ${data.result.email} has been removed as an admin.`);
+        toastr.success('Success', `message: Success! ${data.result.email} has been removed as an admin.`);
       })
       .catch(error => {
         console.log(error);
