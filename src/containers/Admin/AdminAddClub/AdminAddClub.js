@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { EditorState, convertToRaw, ContentState } from 'draft-js';
+import { EditorState, convertToRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
-import htmlToDraft from 'html-to-draftjs';
-import draftToMarkdown from 'draftjs-to-markdown';
 import { createPost } from '../../../actions/postActions';
 import Input from '../../../components/UI/Input/Input';
 
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import './AdminAddClub.scss';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 class AdminAddClub extends Component {
   state = {
@@ -33,17 +31,7 @@ class AdminAddClub extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     
-    const html = '<p>Hey this <strong>editor</strong> rocks 😀</p>';
-    const contentBlock = htmlToDraft(html);
-
-    // console.log(contentBlock.contentBlocks[0].text);
-
     if (this.checkValidity()) {
-      const rawContentState = convertToRaw(this.state.editorState.getCurrentContent());
-      const markup = draftToMarkdown(rawContentState, null, null, null);
-
-      // console.log(markup);
-
       this.props.createPost(this.state.title, draftToHtml(convertToRaw(this.state.editorState.getCurrentContent())));
       this.setState({
         text: '',
@@ -85,10 +73,6 @@ class AdminAddClub extends Component {
             wrapperClassName="wrapperClassName"
             editorClassName="editorClassName"
             onEditorStateChange={this.onEditorStateChange}
-          />
-          <textarea
-            disabled
-            value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}
           />
           {/* <Input
             proptype="textarea"

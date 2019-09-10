@@ -39,7 +39,11 @@
     width: 90vw;
 
     & > div {
-      flex: 50%;
+      flex: 1;
+    }
+
+    & > div:nth-of-type(2) {
+      flex: 2;
     }
 
     .add-post {

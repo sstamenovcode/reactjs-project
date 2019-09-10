@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../../../actions/postActions';
 import { Link } from 'react-router-dom';
-import { truncate } from '../../../utility';
+import ReactHtmlParser from 'react-html-parser';
 import AdminAddClub from '../AdminAddClub/AdminAddClub';
 import AdminEditRoles from '../AdminEditRoles/AdminEditRoles';
 
@@ -19,7 +19,7 @@ class AdminDashboard extends Component {
                   <Link to={`/posts/${post.id}`}>
                     <h3 className="post-title">{post.title}</h3>
                     <hr />
-                    <p className="post-text">{truncate(post.text)}</p>
+                    <div className="post-text">{ReactHtmlParser(post.text)}</div>
                   </Link>
               </div>
     });

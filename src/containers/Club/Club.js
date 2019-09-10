@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import ReactHtmlParser from 'react-html-parser';
 import { fetchPost, deletePost } from '../../actions/postActions';
 
 import './Club.scss';
@@ -18,7 +19,7 @@ class Club extends Component {
     return (
       <div className="club-container">
         <h1 className="heading">{this.props.post.title}</h1>
-        <p>{this.props.post.text}</p>
+        <div>{ReactHtmlParser(this.props.post.text)}</div>
       </div>
     )
   }

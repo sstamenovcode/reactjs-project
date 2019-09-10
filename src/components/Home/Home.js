@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import ReactHtmlParser from 'react-html-parser';
 import { fetchPosts } from '../../actions/postActions';
-import { truncate } from '../../utility';
  
 import './Home.scss';
 
@@ -16,7 +16,7 @@ export class Home extends Component {
             return <div key={i} className="post">
                         <h3 className="post-title">{post.title}</h3>
                         <hr />
-                        <p className="post-text">{truncate(post.text)}</p>
+                        <div className="post-text">{ReactHtmlParser(post.text)}</div>
                         <Link to={`/clubs/${post.id}`} className="read-more-container">Read more</Link>
                     </div>
         }).slice(0, 3);

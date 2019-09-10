@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { truncate } from '../../utility';
+import ReactHtmlParser from 'react-html-parser';
 
 import './Posts.scss';
 
@@ -10,7 +10,7 @@ class Posts extends Component {
       return  <div key={i} className="post">
                   <h3 className="post-title">{post.title}</h3>
                   <hr />
-                  <p className="post-text">{truncate(post.text)}</p>
+                  <div className="post-text">{ReactHtmlParser(post.text)}</div>
                   <div className="read-more-container">
                       <Link to={`/clubs/${post.id}`}>Read more</Link>
                   </div>

@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { EditorState, ContentState, convertToRaw } from 'draft-js';
+import { Editor } from 'react-draft-wysiwyg';
+import draftToHtml from 'draftjs-to-html';
+import htmlToDraft from 'html-to-draftjs';
 import { fetchPost, editPost, deletePost } from '../../../actions/postActions';
 import Input from '../../../components/UI/Input/Input';
 
 import './AdminEditDeleteClub.scss';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 class AdminEditDeleteClub extends Component {
   state = {
     title: '',
-    text: ''
+    text: '',
+    editorState: EditorState.createEmpty()
   }
 
   componentDidMount() {
@@ -18,9 +24,15 @@ class AdminEditDeleteClub extends Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.post !== prevProps.post) {
+      const blocksFromHtml = htmlToDraft(this.props.post.text);
+      const { contentBlocks, entityMap } = blocksFromHtml;
+      const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
+      const editorState = EditorState.createWithContent(contentState);
+
       this.setState({
         title: this.props.post.title,
-        text: this.props.post.text
+        text: this.props.post.text,
+        editorState
       });
     }
   }
@@ -35,9 +47,19 @@ class AdminEditDeleteClub extends Component {
     });
   }
 
+  onEditorStateChange = (editorState) => {
+    this.setState({
+      editorState
+    });
+  };
+
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.editPost(this.props.match.params.id, this.state.title, this.state.text);
+    this.props.editPost(
+      this.props.match.params.id, 
+      this.state.title, 
+      draftToHtml(convertToRaw(this.state.editorState.getCurrentContent()))
+    );
     this.props.history.push({pathname: '/admin-dashboard'});
   }
 
@@ -48,6 +70,8 @@ class AdminEditDeleteClub extends Component {
   }
 
   render() {
+    const { editorState } = this.state;
+
     return (
       <div className="edit-club-container">
         <h1 className="heading">Edit / Delete Post</h1>
@@ -62,7 +86,14 @@ class AdminEditDeleteClub extends Component {
             onChange={this.handleChange} 
             id="title"
           />
-          <Input
+          <Editor
+            editorState={editorState}
+            toolbarClassName="toolbarClassName"
+            wrapperClassName="wrapperClassName"
+            editorClassName="editorClassName"
+            onEditorStateChange={this.onEditorStateChange}
+          />
+          {/* <Input
             proptype="textarea"
             label="Text:"
             labelfor="text"
@@ -70,7 +101,7 @@ class AdminEditDeleteClub extends Component {
             value={this.state.text}
             onChange={this.handleChange} 
             id="text"
-          />
+          /> */}
           <div className="post-actions-container">
             <Input
               proptype="input"

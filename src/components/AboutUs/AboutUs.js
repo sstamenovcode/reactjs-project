@@ -15,7 +15,7 @@ const aboutUs = () => {
                     Here you can find information about them such as the year they are founded, their famous players, their trophies and many more!
                 </p>
                 <p>If you have any ideas for improving the website, you can use the Contacts page and submit them in a text form.</p>
-                <img src={footballBall} className="football-ball" />
+                <img src={footballBall} className="football-ball" alt="Football Ball" />
             </div>
         </div>
     )
