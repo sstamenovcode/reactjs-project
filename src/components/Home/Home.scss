@@ -32,8 +32,10 @@
     .post {
         position: relative;
         width: 100%;
-        margin: 0 auto 20px auto;
-        padding: 10px 10px 30px 10px;
+        margin: 0 auto 25px auto;
+        padding: 20px 10px 40px 10px;
+        max-height: 300px;
+        overflow-y: hidden;    
         border-top: 1px solid #000;
     
         .post-title {
@@ -50,8 +52,12 @@
     
         .read-more-container {
             position: absolute;
-            right: 15px;
-            bottom: 5px;
+            display: block;
+            width: 100%;
+            right: 0px;
+            bottom: 0px;
+            text-align: right;
+            background: #fff;
         }
     }
 }

@@ -1,20 +1,30 @@
 .clubs-container {
   .post {
-      margin: 0 auto 20px auto;
-      padding: 10px;
-      border: 1px solid #177707;
-      border-radius: 4px;
-  
-      .post-title {
-          padding: 0 0 10px 0;
-      }
-  
-      .post-text {
-          padding: 5px 0 0 0;
-      }
-  
-      .read-more-container {
-          text-align: right;
-      }
+    position: relative;
+    margin: 0 auto 20px auto;
+    padding: 10px;
+    max-height: 300px;
+    overflow-y: hidden;    
+    border: 1px solid #177707;
+    border-radius: 4px;
+
+    .post-title {
+        padding: 0 0 10px 0;
+    }
+
+    .post-text {
+        padding: 5px 0 0 0;
+    }
+
+    .read-more-container {
+        position: absolute;
+        bottom: 0;
+        right: 12px;
+        display: block;
+        width: 100%;
+        padding: 5px;
+        text-align: right;
+        background: #fff;
+    }
   }
 }
