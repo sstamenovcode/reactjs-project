@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import firebase from 'firebase';
 
 import './SideNav.scss';
 
@@ -13,7 +14,7 @@ class SideNav extends Component {
       <div className="sidenav" id="sideNav">
         <button className="close-btn" onClick={this.closeNav}>&times;</button>
         <ul className="mobile-menu">
-          {this.props.isAuth ? <NavLink to="/user-profile" onClick={this.closeNav} className="user-profile-link"><li>{this.props.email}</li></NavLink> : null}
+          {this.props.isAuth ? <NavLink to="/user-profile" onClick={this.closeNav} className="user-profile-link"><li>{firebase.auth().currentUser.email}</li></NavLink> : null}
           <NavLink to="/" onClick={this.closeNav}><li>Home</li></NavLink>
           {this.props.isAuth ? <NavLink to="/admin-dashboard" onClick={this.closeNav}><li>Dashboard</li></NavLink> : null}
           <NavLink to="/clubs" onClick={this.closeNav}><li>Clubs</li></NavLink>
