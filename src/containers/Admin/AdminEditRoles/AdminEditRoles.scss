@@ -1,4 +1,7 @@
 .admin-roles-container {
+  margin-top: 20px;
+  border-top: 1px solid green;
+
   label {
     display: block;
     margin: 10px 0;
@@ -44,6 +47,7 @@
 
 @media only screen and (min-width: 768px) {
   .admin-roles-container {
-
+    margin-top: 0;
+    border-top: none;  
   }
 }
