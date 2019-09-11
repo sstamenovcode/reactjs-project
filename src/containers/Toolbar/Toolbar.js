@@ -58,7 +58,7 @@ class Toolbar extends Component {
                         </div>
                         {this.state.isSideNavOpen ? 
                             (<SideNav
-                                isAuth={this.props.email ? true : false}
+                                isAuth={this.props.isAuth}
                                 isOpen={this.state.isSideNavOpen}
                                 unmountSideNav={this.toggleSideNav} 
                             />) : null}
