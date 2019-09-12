@@ -35,7 +35,8 @@ class AdminAddClub extends Component {
       this.props.createPost(this.state.title, draftToHtml(convertToRaw(this.state.editorState.getCurrentContent())));
       this.setState({
         text: '',
-        title: ''
+        title: '',
+        editorState: EditorState.createEmpty()
       });
     } else {
       alert('The title, the text, or both should consist of more letters.');
@@ -74,15 +75,6 @@ class AdminAddClub extends Component {
             editorClassName="editorClassName"
             onEditorStateChange={this.onEditorStateChange}
           />
-          {/* <Input
-            proptype="textarea"
-            label="Text:"
-            labelfor="text"
-            name="text"
-            value={this.state.text}
-            onChange={this.handleChange} 
-            id="text"
-          /> */}
           <div className="post-actions-container">
             <Input
               proptype="input"
