@@ -19,7 +19,7 @@ class Club extends Component {
     return (
       <div className="club-container">
         <h1 className="heading">{this.props.post.title}</h1>
-        <div>{ReactHtmlParser(this.props.post.text)}</div>
+        <div className="post-container">{ReactHtmlParser(this.props.post.text)}</div>
       </div>
     )
   }

@@ -1,6 +1,10 @@
 .club-container {
   width: 90vw;
   margin: 0 auto;
+
+  .post-container {
+    padding-bottom: 20px;
+  }
 }
 
 @media only screen and (min-width: 768px) {
