@@ -8,6 +8,7 @@ import './UserProfile.scss';
 class UserProfile extends Component {
   state = {
     email: firebase.auth().currentUser.email,
+    password: '',
     isEmailValid: null,
     isFormDirty: false
   }
@@ -20,6 +21,7 @@ class UserProfile extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
+    debugger
     this.setState(state => ({ isFormDirty: true }))
     await this.setErrorClasses();
     const isValid = this.checkValidity();
@@ -30,29 +32,30 @@ class UserProfile extends Component {
 
   clearUserDataState = () => {
     this.setState({
-        email: ''
+        email: '',
+        password: ''
     });
   }
 
   setErrorClasses = () => {
-    if (!validateEmail(this.state.email)) {
-        this.setState(state => ({ isEmailValid: false }))
+    if (validateEmail(this.state.email)) {
+        this.setState(state => ({ isEmailValid: true }))
     } else {
-        this.setState(state => ({ isEmailValid: true }));
+        this.setState(state => ({ isEmailValid: false }));
     }
   }
 
   checkValidity = () => {
-    if (!this.state.isEmailValid) {
-        return false;
-    } else {
+    if (this.state.isEmailValid && this.state.isPasswordValid) {
         return true;
+    } else {
+        return false;
     }
   }
 
   render() {
     const emailInputErrorMessage = <p className="error-message">The email is not valid.</p>;
-
+    const passwordInputErrorMessage = <p className="error-message">The password is not valid.</p>;
 
     return (
       <div className="user-profile-container">
@@ -71,10 +74,28 @@ class UserProfile extends Component {
             required
           />
           {!this.state.isEmailValid && this.state.isFormDirty ? emailInputErrorMessage : null}
+          <Input
+            proptype="input"
+            type="password"
+            labelfor="password"
+            label="Password:"
+            name="password"
+            value={this.state.password || ''}
+            onChange={this.handleChange} 
+            id="password"
+            placeholder="Your password..."
+            required
+          />
+          {!this.state.isPasswordValid && this.state.isFormDirty ? passwordInputErrorMessage : null}
           <Input 
             proptype="input"
             type="submit" 
-            value="Submit" 
+            value="Change email" 
+          />
+          <Input 
+            proptype="input"
+            type="submit" 
+            value="Change password" 
           />
         </form>
       </div>
