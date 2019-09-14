@@ -15,13 +15,11 @@ class AdminDashboard extends Component {
 
   render() {
     const postItems = this.props.posts.map((post, i) => {
-      return  <div key={i} className="post">
-                  <Link to={`/posts/${post.id}`}>
-                    <h3 className="post-title">{post.title}</h3>
-                    <hr />
-                    <div className="post-text">{ReactHtmlParser(post.text)}</div>
-                  </Link>
-              </div>
+      return  <Link to={`/posts/${post.id}`} key={i}>
+                <div className="post">
+                  <h3 className="post-title">{post.title}</h3>
+                </div>
+              </Link>         
     });
 
     return (

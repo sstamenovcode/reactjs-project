@@ -9,10 +9,6 @@
     overflow-y: hidden; 
   }
 
-  .post:nth-child(even) {
-    background: #ffeab9;
-  }
-
   .post:hover {
     background: #80f573;
   }
@@ -27,11 +23,16 @@
   }
 
   a {
+    display: block;
     color: #000;
   }
 
   a:hover {
     text-decoration: none;
+  }
+
+  a:nth-child(even) {
+    background: #ffeab9;
   }
 }
 
