@@ -17,17 +17,6 @@
     border: 1px solid #ccc;
   }
 
-  #remove-admin-btn {
-    color: #fff;
-    font-size: 1.1rem;
-    background: red;
-    cursor: pointer;
-
-    &:hover {
-      background: #ce0000;
-    }
-  }
-
   .react-autosuggest__suggestions-list {
     list-style-type: none;
 

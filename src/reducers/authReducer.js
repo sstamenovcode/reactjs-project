@@ -8,18 +8,6 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch(action.type) {
-    case REGISTER_USER: 
-      return updateObject(state, { 
-        email: action.payload.email
-      })
-    case LOGIN_USER: 
-      return updateObject(state, {
-        email: action.payload.email
-      })
-    case GET_USER: 
-      return updateObject(state, { 
-        email: action.payload.email
-      })
     case GET_USERS: 
       return updateObject(state, { 
         users: action.payload

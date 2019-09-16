@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import firebase from 'firebase';
+import { toastr } from 'react-redux-toastr';
 import Input from '../../components/UI/Input/Input';
 import { validateEmail } from '../../utility';
 
@@ -8,7 +9,8 @@ import './UserProfile.scss';
 class UserProfile extends Component {
   state = {
     email: firebase.auth().currentUser.email,
-    password: '',
+    newPassword: '',
+    retypedNewPassword: '',
     isEmailValid: null,
     isFormDirty: false
   }
@@ -21,7 +23,6 @@ class UserProfile extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    debugger
     this.setState(state => ({ isFormDirty: true }))
     await this.setErrorClasses();
     const isValid = this.checkValidity();
@@ -30,10 +31,41 @@ class UserProfile extends Component {
     }
   }
 
+  changeEmail = (e) => {
+    e.preventDefault();
+    const user = firebase.auth().currentUser;
+
+    if (firebase.auth().currentUser.email !== this.state.email) {
+      user.updateEmail(this.state.email).then(function() {
+        toastr.success('Success!', 'You have successfully changed your email.');
+      }).catch(function(error) {
+        toastr.error('Error.', 'There was an error.');
+      });
+    } else {
+      toastr.error('Error.', 'Please, provide a different email from the previous one.');
+    }
+  }
+
+  changePassword = (e) => {
+    e.preventDefault();
+    const user = firebase.auth().currentUser;
+
+    if (this.state.newPassword === this.state.retypedNewPassword) {
+      user.updatePassword(this.state.newPassword).then(function() {
+        toastr.success('Success!', 'You have successfully changed your password.');
+      }).catch(function(error) {
+        toastr.error('Error.', 'There was an error.');
+      });
+    } else {
+      toastr.error('Error.', 'The passwords you entered should be the same.');
+    }
+  }
+
   clearUserDataState = () => {
     this.setState({
         email: '',
-        password: ''
+        newPassword: '',
+        retypedNewPassword: ''
     });
   }
 
@@ -77,24 +109,40 @@ class UserProfile extends Component {
           <Input
             proptype="input"
             type="password"
-            labelfor="password"
-            label="Password:"
-            name="password"
-            value={this.state.password || ''}
+            labelfor="newPassword"
+            label="New Password:"
+            name="newPassword"
+            value={this.state.newPassword || ''}
             onChange={this.handleChange} 
-            id="password"
-            placeholder="Your password..."
+            id="newPassword"
+            placeholder="Your new password..."
             required
           />
           {!this.state.isPasswordValid && this.state.isFormDirty ? passwordInputErrorMessage : null}
-          <Input 
+          <Input
             proptype="input"
-            type="submit" 
-            value="Change email" 
+            type="password"
+            labelfor="retypeNewPassword"
+            label="Retype New Password:"
+            name="retypedNewPassword"
+            value={this.state.retypedNewPassword || ''}
+            onChange={this.handleChange} 
+            id="retypeNewPassword"
+            placeholder="Retype your new password..."
+            required
+          />
+          {!this.state.isPasswordValid && this.state.isFormDirty ? passwordInputErrorMessage : null}
+          <Input
+            proptype="input"
+            type="button" 
+            value="Change email"
+            className="success-btn"
+            onClick={this.changeEmail}
           />
           <Input 
             proptype="input"
-            type="submit" 
+            type="button"
+            className="success-btn"
             value="Change password" 
           />
         </form>
@@ -102,6 +150,5 @@ class UserProfile extends Component {
     )
   }
 }
-
 
 export default UserProfile;

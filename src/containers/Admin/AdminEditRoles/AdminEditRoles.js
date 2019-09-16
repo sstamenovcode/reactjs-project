@@ -116,8 +116,8 @@ class AdminEditRoles extends Component {
             proptype="input"
             type="button"
             value="Remove Admin"
+            className="alert-btn"
             onClick={this.removeAdmin}
-            id="remove-admin-btn"
           />
         </form>
       </div>

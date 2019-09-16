@@ -14,6 +14,28 @@
   }
 }
 
+.success-btn {
+  color: #fff;
+  font-size: 1.1rem;
+  background: green;
+  cursor: pointer;
+
+  &:hover {
+    background: darkgreen;
+  }
+}
+
+.alert-btn {
+  color: #fff;
+  font-size: 1.1rem;
+  background: red;
+  cursor: pointer;
+
+  &:hover {
+    background: #ce0000;
+  }
+}
+
 .error-message {
   color: red;
   font-size: 0.8rem;
