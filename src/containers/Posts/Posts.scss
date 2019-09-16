@@ -2,7 +2,6 @@
   .post {
     position: relative;
     margin: 0 auto 20px auto;
-    padding: 10px;
     max-height: 300px;
     overflow-y: hidden;    
     border: 1px solid #177707;
@@ -14,7 +13,7 @@
     }
 
     .post-text {
-        padding: 5px 0 0 0;
+        padding: 10px;
     }
 
     .read-more-container {
