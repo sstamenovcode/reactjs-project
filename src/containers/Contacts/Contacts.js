@@ -95,7 +95,7 @@ class Contacts extends Component {
         const isHumanInputErrorMessage = <p className="error-message">In order to send the message, you should confirm that you are human.</p>
 
         return (
-            <div className="forms-container">
+            <div className="contacts-container">
                 <h1 className="heading">Contacts</h1>
                 <form onSubmit={this.handleSubmit}>
                     <Input

@@ -132,19 +132,21 @@ class UserProfile extends Component {
             required
           />
           {!this.state.isPasswordValid && this.state.isFormDirty ? passwordInputErrorMessage : null}
-          <Input
-            proptype="input"
-            type="button" 
-            value="Change email"
-            className="success-btn"
-            onClick={this.changeEmail}
-          />
-          <Input 
-            proptype="input"
-            type="button"
-            className="success-btn"
-            value="Change password" 
-          />
+          <div className="action-btns-container">
+            <Input
+              proptype="input"
+              type="button" 
+              value="Change email"
+              className="success-btn"
+              onClick={this.changeEmail}
+            />
+            <Input 
+              proptype="input"
+              type="button"
+              className="success-btn"
+              value="Change password" 
+            />
+          </div>
         </form>
       </div>
     )
