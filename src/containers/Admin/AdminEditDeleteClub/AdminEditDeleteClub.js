@@ -74,7 +74,7 @@ class AdminEditDeleteClub extends Component {
 
     return (
       <div className="edit-club-container">
-        <h1 className="heading">Edit / Delete Post</h1>
+        <h1 className="heading">Edit / Delete club</h1>
         <form className="register-container" onSubmit={this.handleSubmit}>
           <Input
             proptype="input"
