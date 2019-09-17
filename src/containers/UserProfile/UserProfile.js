@@ -37,7 +37,7 @@ class UserProfile extends Component {
 
     if (firebase.auth().currentUser.email !== this.state.email) {
       user.updateEmail(this.state.email).then(function() {
-        toastr.success('Success!', 'You have successfully changed your email.');
+        toastr.success('Success!', 'You have successfully changed your email. You should logout and login again in order to see the changes take effect.');
       }).catch(function(error) {
         toastr.error('Error.', 'There was an error.');
       });
@@ -51,9 +51,10 @@ class UserProfile extends Component {
     const user = firebase.auth().currentUser;
 
     if (this.state.newPassword === this.state.retypedNewPassword) {
-      user.updatePassword(this.state.newPassword).then(function() {
+      user.updatePassword(this.state.newPassword).then(() => {
+        this.clearUserDataState();
         toastr.success('Success!', 'You have successfully changed your password.');
-      }).catch(function(error) {
+      }).catch(error => {
         toastr.error('Error.', 'There was an error.');
       });
     } else {
@@ -63,7 +64,6 @@ class UserProfile extends Component {
 
   clearUserDataState = () => {
     this.setState({
-        email: '',
         newPassword: '',
         retypedNewPassword: ''
     });
@@ -144,7 +144,8 @@ class UserProfile extends Component {
               proptype="input"
               type="button"
               className="success-btn"
-              value="Change password" 
+              value="Change password"
+              onClick={this.changePassword}
             />
           </div>
         </form>
