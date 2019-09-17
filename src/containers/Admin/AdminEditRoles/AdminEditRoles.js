@@ -96,7 +96,7 @@ class AdminEditRoles extends Component {
 
     return (
       <div className="admin-roles-container">
-        <h1 className="heading">Manage Admins</h1>
+        <h1 className="heading">Manage admins</h1>
         <form onSubmit={this.handleSubmit}>
           <label>User email:</label> 
           <Autosuggest

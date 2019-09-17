@@ -25,7 +25,7 @@ class AdminDashboard extends Component {
     return (
       <div className="admin-dashboard-container">
         <div className="edit-delete-post">
-          <h1 className="heading">Edit / Delete Club</h1>
+          <h1 className="heading">Edit / Delete club</h1>
           {postItems}
         </div>
         <div className="add-post">
