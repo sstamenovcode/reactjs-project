@@ -1,4 +1,4 @@
-import { REGISTER_USER, LOGIN_USER, GET_USER, GET_USERS, LOGOUT_USER } from '../actions/types';
+import { GET_USERS, LOGOUT_USER } from '../actions/types';
 import { updateObject } from '../utility';
 
 const initialState = {

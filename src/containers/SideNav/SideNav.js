@@ -16,7 +16,7 @@ class SideNav extends Component {
         <ul className="mobile-menu">
           {this.props.isAuth ? <NavLink to="/user-profile" onClick={this.closeNav} className="user-profile-link"><li>{firebase.auth().currentUser.email}</li></NavLink> : null}
           <NavLink to="/" onClick={this.closeNav}><li>Home</li></NavLink>
-          {this.props.isAuth ? <NavLink to="/admin-dashboard" onClick={this.closeNav}><li>Dashboard</li></NavLink> : null}
+          {this.props.isAdmin ? <NavLink to="/admin-dashboard" onClick={this.closeNav}><li>Dashboard</li></NavLink> : null}
           <NavLink to="/clubs" onClick={this.closeNav}><li>Clubs</li></NavLink>
           <NavLink to="/about-us" onClick={this.closeNav}><li>About us</li></NavLink>
           <NavLink to="/contacts" onClick={this.closeNav}><li>Contacts</li></NavLink>

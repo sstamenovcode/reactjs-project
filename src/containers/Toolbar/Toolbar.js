@@ -29,7 +29,7 @@ class Toolbar extends Component {
                             {this.props.isAuth ? <NavLink to="/user-profile">
                                 <li>{firebase.auth().currentUser.email}</li>
                             </NavLink> : null}
-                            {this.props.isAuth ? <NavLink to="/admin-dashboard">
+                            {this.props.isAdmin ? <NavLink to="/admin-dashboard">
                                 <li>Dashboard</li>
                             </NavLink> : null}
                             <NavLink to="/clubs">
@@ -59,6 +59,7 @@ class Toolbar extends Component {
                         {this.state.isSideNavOpen ? 
                             (<SideNav
                                 isAuth={this.props.isAuth}
+                                isAdmin={this.props.isAdmin}
                                 isOpen={this.state.isSideNavOpen}
                                 unmountSideNav={this.toggleSideNav} 
                             />) : null}

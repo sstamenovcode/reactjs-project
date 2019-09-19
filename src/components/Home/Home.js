@@ -13,7 +13,7 @@ export class Home extends Component {
 
     render() {
         const postItems = this.props.posts.map((post, i) => {
-            return <div key={i} className="post">
+            return  <div key={i} className="post">
                         <h3 className="post-title">{post.title}</h3>
                         <hr />
                         <div className="post-text">{ReactHtmlParser(post.text)}</div>

@@ -21,7 +21,8 @@ import './App.scss';
 
 export class App extends Component {
   state = {
-    isAuth: null
+    isAuth: null,
+    isAdmin: null
   }
 
   componentDidMount() {
@@ -29,6 +30,28 @@ export class App extends Component {
       if (user) {
         this.setState({
           isAuth: true
+        });
+
+        firebase
+          .auth()
+          .currentUser
+          .getIdTokenResult()
+          .then((idTokenResult) => {
+          // Confirm the user is an Admin.
+          if (!!idTokenResult.claims.admin) {
+            // Show admin UI.
+            this.setState({
+              isAdmin: true
+            });
+          } else {
+            // Show regular user UI.
+            this.setState({
+              isAdmin: false
+            });
+          }
+        })
+        .catch((error) => {
+          console.log(error);
         });
       } else {
         this.setState({
@@ -75,7 +98,7 @@ export class App extends Component {
       <Router>
         <div className="App">
           <div className="content">
-            <Toolbar isAuth={this.state.isAuth} />
+            <Toolbar isAuth={this.state.isAuth} isAdmin={this.state.isAdmin} />
             {routes}
           </div>
           <Footer />
