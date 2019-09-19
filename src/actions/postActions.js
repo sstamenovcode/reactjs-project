@@ -1,4 +1,5 @@
 import firebase from 'firebase';
+import { toastr } from 'react-redux-toastr';
 import { FETCH_POSTS, ADD_POST, FETCH_POST, UPDATE_POST, DELETE_POST } from './types';
 import db from '../firestoreInit';
 
@@ -18,7 +19,7 @@ export const fetchPosts = () => {
           type: FETCH_POSTS,
           payload: docs
         })                
-      });
+      })
   }
 }
 
@@ -34,8 +35,8 @@ export const createPost = (title, text) => {
             payload: { id: docRef.id, ...post }
           })
       })
-      .catch(function(error) {
-        console.log(error);
+      .catch(error => {
+        toastr.error('Error', error.message);
       });
   }
 }
@@ -52,8 +53,8 @@ export const fetchPost = (id) => {
           payload: docRef.data()
         })
       })
-      .catch(function(error) {
-        console.log(error);
+      .catch(error => {
+        toastr.error('Error', error.message);
       });
   }
 }
@@ -71,12 +72,11 @@ export const editPost = (id, title, text) => {
           payload: post
         })
       })
-      .catch(function(error) {
-        console.log(error);
+      .catch(error => {
+        toastr.error('Error', error.message);
       });
   }
 }
-
 
 export const deletePost = (id, isPermanent) => {
   return (dispatch) => {
