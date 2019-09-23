@@ -120,13 +120,21 @@ class AdminEditRoles extends Component {
             onClick={this.removeAdmin}
           />
         </form>
+        <h2 className="current-admins-heading">Current admins:</h2>
+        <ul className="current-admins-list">
+          {this.props.users.map(user => {
+            if (user.customClaims.admin) {
+              return <li key={user.uid}>{user.email}</li>;
+            }
+          })}
+        </ul>
       </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  users: state.auth.users
+  users: state.auth.users || []
 })
 
 const mapDispatchToProps = dispatch => {

@@ -16,6 +16,14 @@
     border-radius: 3px;
     border: 1px solid #ccc;
   }
+
+  .current-admins-heading {
+    padding: 20px 0 5px 0;
+  }
+
+  .current-admins-list {
+    list-style-type: none;
+  }
 }
 
 @media only screen and (min-width: 768px) {
