@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import ReactHtmlParser from 'react-html-parser';
 
-import './Posts.scss';
+import './ClubsList.scss';
 
-class Posts extends Component {
+class ClubsList extends Component {
   render() {
     const postItems = this.props.postItems.map((post, i) => {
       return  <div key={i} className="post">
@@ -25,4 +25,4 @@ class Posts extends Component {
   }
 }
 
-export default Posts;
+export default ClubsList;

@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { EditorState, convertToRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
-import { createPost } from '../../../actions/postActions';
-import Input from '../../../components/UI/Input/Input';
+import { createPost } from '../../../../actions/postActions';
+import Input from '../../../../components/UI/Input/Input';
 
 import './AdminAddClub.scss';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';

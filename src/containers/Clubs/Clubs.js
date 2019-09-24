@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import Autosuggest from 'react-autosuggest';
 import db from '../../firestoreInit';
 import { fetchPosts } from '../../actions/postActions';
-import Posts from '../Posts/Posts';
+import ClubsList from './ClubsList/ClubsList';
 import Pagination from '../../components/Pagination/Pagination';
 
 import './Clubs.scss';
@@ -114,7 +114,7 @@ class Clubs extends Component {
                     onSuggestionSelected={this.openClubPage}
                 />
                 <h2 className="heading">All clubs</h2>
-                <Posts
+                <ClubsList
                     postItems={currentPosts}
                     loading={this.state.loading}
                 />

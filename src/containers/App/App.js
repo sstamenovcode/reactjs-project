@@ -3,19 +3,19 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import ReduxToastr from 'react-redux-toastr';
 import firebase from 'firebase';
 import Toolbar from '../Toolbar/Toolbar';
-import Footer from '../../components/Footer/Footer';
-import Home from '../../components/Home/Home';
-import AdminDashboard from '../../containers/Admin/AdminDashboard/AdminDashboard';
+import Home from '../../containers/Home/Home';
 import UserProfile from '../UserProfile/UserProfile';
+import AdminDashboard from '../../containers/Admin/AdminDashboard/AdminDashboard';
+import AdminEditDeleteClub from '../../containers/Admin/AdminEditDeleteClub/AdminEditDeleteClub';
 import Clubs from '../../containers/Clubs/Clubs';
 import Club from '../../containers/Club/Club';
-import AdminEditDeleteClub from '../../containers/Admin/AdminEditDeleteClub/AdminEditDeleteClub';
 import AboutUs from '../../components/AboutUs/AboutUs';
 import Contacts from '../Contacts/Contacts';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import Logout from '../Logout/Logout';
 import NotFound from '../../components/NotFound/NotFound';
+import Footer from '../../components/Footer/Footer';
 
 import './App.scss';
 

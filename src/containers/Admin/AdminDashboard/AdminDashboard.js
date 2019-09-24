@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../../../actions/postActions';
 import { Link } from 'react-router-dom';
-import AdminAddClub from '../AdminAddClub/AdminAddClub';
-import AdminEditRoles from '../AdminEditRoles/AdminEditRoles';
+import AdminAddClub from './AdminAddClub/AdminAddClub';
+import AdminEditRoles from './AdminEditRoles/AdminEditRoles';
 
 import './AdminDashboard.scss';
 

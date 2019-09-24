@@ -93,15 +93,6 @@ class AdminEditDeleteClub extends Component {
             editorClassName="editorClassName"
             onEditorStateChange={this.onEditorStateChange}
           />
-          {/* <Input
-            proptype="textarea"
-            label="Text:"
-            labelfor="text"
-            name="text"
-            value={this.state.text}
-            onChange={this.handleChange} 
-            id="text"
-          /> */}
           <div className="post-actions-container">
             <Input
               proptype="input"

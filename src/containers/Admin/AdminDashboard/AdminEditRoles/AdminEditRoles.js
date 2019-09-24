@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
 import Autosuggest from 'react-autosuggest';
-import Input from '../../../components/UI/Input/Input';
-import { getAllUsers, addAdminRole, removeAdminRole } from '../../../actions/authActions';
+import Input from '../../../../components/UI/Input/Input';
+import { getAllUsers, addAdminRole, removeAdminRole } from '../../../../actions/authActions';
 
 import './AdminEditRoles.scss';
 
