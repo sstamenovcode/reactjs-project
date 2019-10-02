@@ -22,6 +22,7 @@ class Register extends Component {
       .auth()
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
+        localStorage.setItem('loggedIn', true);
         this.props.history.push({pathname: '/'});
       })
       .catch(error => {

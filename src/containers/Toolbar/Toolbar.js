@@ -27,7 +27,7 @@ class Toolbar extends Component {
                     <nav>
                         <ul className="desktop-menu">
                             {this.props.isAuth ? <NavLink to="/user-profile">
-                                <li>{firebase.auth().currentUser.email}</li>
+                                <li>{firebase.auth().currentUser ? firebase.auth().currentUser.email : "Your profile"}</li>
                             </NavLink> : null}
                             {this.props.isAdmin ? <NavLink to="/admin-dashboard">
                                 <li>Dashboard</li>

@@ -7,6 +7,9 @@ class Logout extends Component {
     firebase
       .auth()
       .signOut()
+      .then(() => {
+        localStorage.removeItem('loggedIn');
+      })
       .catch(error => {
         console.log(error);
       });

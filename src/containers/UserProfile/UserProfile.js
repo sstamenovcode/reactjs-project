@@ -8,7 +8,7 @@ import './UserProfile.scss';
 
 class UserProfile extends Component {
   state = {
-    email: firebase.auth().currentUser.email,
+    email: firebase.auth().currentUser ? firebase.auth().currentUser.email : 'Your profile',
     newPassword: '',
     retypedNewPassword: '',
     isEmailValid: null,

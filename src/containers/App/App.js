@@ -26,6 +26,10 @@ export class App extends Component {
   }
 
   componentDidMount() {
+    this.setState({
+      isAuth: localStorage.getItem('loggedIn')
+    });
+
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
         this.setState({
@@ -55,7 +59,8 @@ export class App extends Component {
         });
       } else {
         this.setState({
-          isAuth: false
+          isAuth: false,
+          isAdmin: false
         });
       }
     });

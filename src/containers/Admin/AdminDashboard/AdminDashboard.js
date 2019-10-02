@@ -25,7 +25,7 @@ class AdminDashboard extends Component {
     const postItems = this.props.posts.map((post, i) => {
       return  <CSSTransition
                 key={i}
-                timeout={1000}
+                timeout={300}
                 className="post"
                 classNames="item"
               >
