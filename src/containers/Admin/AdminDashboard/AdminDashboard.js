@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { fetchPosts } from '../../../actions/postActions';
 import { Link } from 'react-router-dom';
 import AdminAddClub from './AdminAddClub/AdminAddClub';
@@ -12,20 +13,35 @@ class AdminDashboard extends Component {
     this.props.fetchPosts();
   }
 
+  shouldComponentUpdate(nextProps) {
+    if (JSON.stringify(this.props.posts) !== JSON.stringify(nextProps.posts)) {
+      return true;
+    }
+
+    return false;
+  }
+
   render() {
     const postItems = this.props.posts.map((post, i) => {
-      return  <Link to={`/posts/${post.id}`} key={i}>
-                <div className="post">
-                  <h3 className="post-title">{post.title}</h3>
-                </div>
-              </Link>         
+      return  <CSSTransition
+                key={i}
+                timeout={1000}
+                className="post"
+                classNames="item"
+              >
+                <Link to={`/posts/${post.id}`}>
+                  <li className="post-title">{post.title}</li>
+                </Link>
+              </CSSTransition>      
     });
 
     return (
       <div className="admin-dashboard-container">
         <div className="edit-delete-post">
           <h1 className="heading">Edit / Delete club</h1>
-          {postItems}
+          <TransitionGroup component={'ul'}>
+            {postItems}
+          </TransitionGroup>
         </div>
         <div className="add-post">
           <AdminAddClub />

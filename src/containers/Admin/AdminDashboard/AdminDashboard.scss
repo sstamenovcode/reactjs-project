@@ -3,14 +3,33 @@
   margin: 0 auto;
   padding-bottom: 20px;
 
+  .item-enter {
+    opacity: 0;
+  }
+  .item-enter-active {
+    opacity: 1;
+    transition: opacity 1000ms ease-in;
+  }
+  .item-exit {
+    opacity: 1;
+  }
+  .item-exit-active {
+    opacity: 0;
+    transition: opacity 1000ms ease-in;
+  }
+
   .post {
     padding: 10px;
     max-height: 200px;
-    overflow-y: hidden; 
-  }
+    overflow-y: hidden;
 
-  .post:hover {
-    background: #80f573;
+    &:hover {
+      background: #80f573;
+    }
+
+    .post-title {
+      font-weight: bold;
+    }
   }
 
   .add-post {
@@ -31,7 +50,7 @@
     text-decoration: none;
   }
 
-  a:nth-child(even) {
+  a:nth-child(odd) {
     background: #ffeab9;
   }
 }

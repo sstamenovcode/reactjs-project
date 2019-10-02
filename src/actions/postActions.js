@@ -7,7 +7,7 @@ export const fetchPosts = () => {
   return (dispatch) => {
     db
       .collection('articles')
-      .orderBy('timestamp', 'desc')
+      .orderBy('timestamp', 'asc')
       .onSnapshot(snapshot => {      
         const docs = [];
         snapshot.forEach(doc => {
@@ -29,12 +29,6 @@ export const createPost = (title, text) => {
     db
       .collection('articles')
       .add({...post, timestamp: firebase.firestore.FieldValue.serverTimestamp()})
-      .then(docRef => {
-          dispatch({ 
-            type: ADD_POST,
-            payload: { id: docRef.id, ...post }
-          })
-      })
       .catch(error => {
         toastr.error('Error', error.message);
       });
