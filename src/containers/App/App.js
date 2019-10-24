@@ -23,7 +23,7 @@ export class App extends Component {
   state = {
     isAuth: null,
     isAdmin: null
-  }
+  };
 
   componentDidMount() {
     this.setState({
@@ -38,25 +38,24 @@ export class App extends Component {
 
         firebase
           .auth()
-          .currentUser
-          .getIdTokenResult()
-          .then((idTokenResult) => {
-          // Confirm the user is an Admin.
-          if (!!idTokenResult.claims.admin) {
-            // Show admin UI.
-            this.setState({
-              isAdmin: true
-            });
-          } else {
-            // Show regular user UI.
-            this.setState({
-              isAdmin: false
-            });
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+          .currentUser.getIdTokenResult()
+          .then(idTokenResult => {
+            // Confirm the user is an Admin.
+            if (!!idTokenResult.claims.admin) {
+              // Show admin UI.
+              this.setState({
+                isAdmin: true
+              });
+            } else {
+              // Show regular user UI.
+              this.setState({
+                isAdmin: false
+              });
+            }
+          })
+          .catch(error => {
+            console.log(error);
+          });
       } else {
         this.setState({
           isAuth: false,
@@ -83,7 +82,7 @@ export class App extends Component {
           <Route path="/logout" component={Logout} />
           <Route path="*" component={NotFound} />
         </Switch>
-      )
+      );
     } else {
       routes = (
         <Switch>
@@ -96,7 +95,7 @@ export class App extends Component {
           <Route path="/login" component={Login} />
           <Route path="*" component={NotFound} />
         </Switch>
-      )
+      );
     }
 
     return (
@@ -115,7 +114,7 @@ export class App extends Component {
             transitionIn="fadeIn"
             transitionOut="fadeOut"
             progressBar
-            closeOnToastrClick 
+            closeOnToastrClick
           />
         </div>
       </Router>

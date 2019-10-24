@@ -8,27 +8,27 @@ class Register extends Component {
   state = {
     email: '',
     password: ''
-  }
+  };
 
-  handleChange = (e) => {
+  handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
-  }
+  };
 
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault();
     firebase
       .auth()
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
         localStorage.setItem('loggedIn', true);
-        this.props.history.push({pathname: '/'});
+        this.props.history.push({ pathname: '/' });
       })
       .catch(error => {
-          console.log(error.message);
+        console.log(error.message);
       });
-  }
+  };
 
   render() {
     return (
@@ -40,9 +40,9 @@ class Register extends Component {
             type="email"
             labelfor="email"
             label="Email:"
-            name="email" 
-            value={this.state.email} 
-            onChange={this.handleChange} 
+            name="email"
+            value={this.state.email}
+            onChange={this.handleChange}
             id="email"
             placeholder="Your email..."
             required
@@ -52,21 +52,17 @@ class Register extends Component {
             type="password"
             labelfor="password"
             label="Password:"
-            name="password" 
-            value={this.state.password} 
-            onChange={this.handleChange} 
+            name="password"
+            value={this.state.password}
+            onChange={this.handleChange}
             id="password"
             placeholder="Your password..."
             required
           />
-          <Input 
-            proptype="input"
-            type="submit" 
-            value="Submit" 
-          />
+          <Input proptype="input" type="submit" value="Submit" />
         </form>
       </div>
-    )
+    );
   }
 }
 

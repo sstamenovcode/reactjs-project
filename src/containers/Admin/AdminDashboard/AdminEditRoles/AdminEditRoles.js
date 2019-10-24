@@ -3,7 +3,11 @@ import { connect } from 'react-redux';
 import firebase from 'firebase';
 import Autosuggest from 'react-autosuggest';
 import Input from '../../../../components/UI/Input/Input';
-import { getAllUsers, addAdminRole, removeAdminRole } from '../../../../actions/authActions';
+import {
+  getAllUsers,
+  addAdminRole,
+  removeAdminRole
+} from '../../../../actions/authActions';
 
 import './AdminEditRoles.scss';
 
@@ -17,13 +21,13 @@ class AdminEditRoles extends Component {
     this.props.getUsers();
   }
 
-  handleChange = (e) => {
+  handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
   };
 
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault();
     this.props.addAdmin(this.state.value, firebase.auth().currentUser.ra);
     this.setState({
@@ -31,37 +35,35 @@ class AdminEditRoles extends Component {
     });
   };
 
-  removeAdmin = (e) => {
+  removeAdmin = e => {
     e.preventDefault();
     this.props.removeAdmin(this.state.value, firebase.auth().currentUser.ra);
     this.setState({
       value: ''
     });
-  }
+  };
 
   // Teach Autosuggest how to calculate suggestions for any given input value.
   getSuggestions = value => {
     const inputValue = value.trim().toLowerCase();
     const inputLength = inputValue.length;
 
-    return inputLength === 0 ? [] : this.props.users.filter(user => {
-      return user.email.toLowerCase().slice(0, inputLength) === inputValue;
-    });
+    return inputLength === 0
+      ? []
+      : this.props.users.filter(user => {
+          return user.email.toLowerCase().slice(0, inputLength) === inputValue;
+        });
   };
 
   // When suggestion is clicked, Autosuggest needs to populate the input
   // based on the clicked suggestion. Teach Autosuggest how to calculate the
   // input value for every given suggestion.
-  getSuggestionValue = (suggestion) => {
+  getSuggestionValue = suggestion => {
     return suggestion.email;
-  }
+  };
 
   // Use your imagination to render suggestions.
-  renderSuggestion = suggestion => (
-    <div>
-      {suggestion.email}
-    </div>
-  );
+  renderSuggestion = suggestion => <div>{suggestion.email}</div>;
 
   onChange = (event, { newValue }) => {
     this.setState({
@@ -89,6 +91,7 @@ class AdminEditRoles extends Component {
 
     // Autosuggest will pass through all these props to the input.
     const inputProps = {
+      id: 'add-admin-input',
       placeholder: 'Type the email of the user',
       value,
       onChange: this.onChange
@@ -98,7 +101,7 @@ class AdminEditRoles extends Component {
       <div className="admin-roles-container">
         <h1 className="heading">Manage admins</h1>
         <form onSubmit={this.handleSubmit}>
-          <label>User email:</label> 
+          <label htmlFor="add-admin-input">User email:</label>
           <Autosuggest
             suggestions={suggestions}
             onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
@@ -107,11 +110,7 @@ class AdminEditRoles extends Component {
             renderSuggestion={this.renderSuggestion}
             inputProps={inputProps}
           />
-          <Input
-            proptype="input"
-            type="submit" 
-            value="Add Admin" 
-          />
+          <Input proptype="input" type="submit" value="Add Admin" />
           <Input
             proptype="input"
             type="button"
@@ -123,26 +122,31 @@ class AdminEditRoles extends Component {
         <h2 className="current-admins-heading">Current admins:</h2>
         <ul className="current-admins-list">
           {this.props.users.map(user => {
-            if (user.customClaims.admin) {
+            if (user.customClaims && user.customClaims.admin) {
               return <li key={user.uid}>{user.email}</li>;
             }
+
+            return false;
           })}
         </ul>
       </div>
-    )
+    );
   }
 }
 
 const mapStateToProps = state => ({
   users: state.auth.users || []
-})
+});
 
 const mapDispatchToProps = dispatch => {
   return {
     getUsers: () => dispatch(getAllUsers()),
     addAdmin: (email, token) => dispatch(addAdminRole(email, token)),
     removeAdmin: (email, token) => dispatch(removeAdminRole(email, token))
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(AdminEditRoles);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AdminEditRoles);

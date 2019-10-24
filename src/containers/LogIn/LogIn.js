@@ -8,65 +8,61 @@ class Register extends Component {
   state = {
     email: '',
     password: ''
-  }
+  };
 
-  handleChange = (e) => {
+  handleChange = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
-  }
+  };
 
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault();
     firebase
       .auth()
       .signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
         localStorage.setItem('loggedIn', true);
-        this.props.history.push({pathname: '/'});
+        this.props.history.push({ pathname: '/' });
       })
       .catch(function(error) {
-          console.log(error.message);
+        console.log(error.message);
       });
-  }
+  };
 
   render() {
     return (
       <div className="forms-container">
         <h1 className="heading">Login</h1>
         <form className="register-container" onSubmit={this.handleSubmit}>
-          <Input 
+          <Input
             proptype="input"
             type="email"
             labelfor="email"
             label="Email:"
-            name="email" 
-            value={this.state.email} 
-            onChange={this.handleChange} 
-            id="email" 
+            name="email"
+            value={this.state.email}
+            onChange={this.handleChange}
+            id="email"
             placeholder="Your email..."
             required
           />
-          <Input 
+          <Input
             proptype="input"
-            type="password" 
+            type="password"
             labelfor="password"
             label="Password:"
-            name="password" 
-            value={this.state.password} 
+            name="password"
+            value={this.state.password}
             onChange={this.handleChange}
             id="password"
             placeholder="Your password..."
             required
           />
-          <Input
-            proptype="input"
-            type="submit" 
-            value="Submit" 
-          />
+          <Input proptype="input" type="submit" value="Submit" />
         </form>
       </div>
-    )
+    );
   }
 }
 
